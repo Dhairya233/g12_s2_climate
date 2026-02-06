@@ -1,0 +1,359 @@
+\documentclass[12pt]{article}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{setspace}
+
+\setstretch{1.15}
+
+\title{CSE400 -- Lecture 7 Lecture Scribe\\
+Expectation, CDFs, PDFs and Problem Solving}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Lecture Coverage (From Outline Slide)}
+
+The lecture includes:
+
+\begin{enumerate}
+\item Cumulative Distribution Function (CDF)
+\begin{itemize}
+\item Definition
+\item Properties
+\item Example
+\end{itemize}
+
+\item Probability Density Function (PDF)
+\begin{itemize}
+\item Definition
+\item Properties
+\item Example
+\end{itemize}
+
+\item Expectation of Random Variables
+\begin{itemize}
+\item Definition and example
+\item Expectation of a function of RV
+\item Linear operation with expectation
+\item n-th moments and central moments (Variance, Skewness, Kurtosis)
+\end{itemize}
+\end{enumerate}
+
+\section{Cumulative Distribution Function (CDF)}
+
+\subsection{Definition and Notation}
+
+Let $X$ be a random variable.
+
+The cumulative distribution function (CDF) is defined as:
+\[
+F_X(x) = \Pr(X \le x), \qquad -\infty < x < \infty
+\]
+
+Notation
+
+$X$ : random variable
+
+$F_X(x)$ : cumulative distribution function of $X$
+
+Statement from slides:
+
+Most information about the random experiment described by $X$ is determined by the behavior of $F_X(x)$.
+
+\subsection{Assumptions and Conditions (Properties of a CDF)}
+
+A function must satisfy the following conditions to be a valid CDF.
+
+\begin{enumerate}
+\item Bounds
+\[
+0 \le F_X(x) \le 1
+\]
+
+\item Limits
+\[
+F_X(-\infty) = 0, \qquad F_X(\infty) = 1
+\]
+
+\item Monotonicity
+
+If $x_1 < x_2$, then
+\[
+F_X(x_1) \le F_X(x_2)
+\]
+
+\item Probability from CDF
+
+For $x_1 < x_2$,
+\[
+\Pr(x_1 < X \le x_2) = F_X(x_2) - F_X(x_1)
+\]
+\end{enumerate}
+
+\section{Worked Example 1 --- Validity of CDF}
+
+Problem: Determine which functions are valid CDFs.
+
+\subsection*{(a)}
+
+\[
+F_X(x) = \frac{1}{2} + \frac{1}{\pi}\tan^{-1}(x)
+\]
+
+Step-by-step verification
+
+Step 1: Check limits.
+
+As $x \to -\infty$,
+\[
+\tan^{-1}(x) \to -\frac{\pi}{2}
+\]
+\[
+F_X(-\infty) = \frac{1}{2} - \frac{1}{2} = 0
+\]
+
+As $x \to \infty$,
+\[
+\tan^{-1}(x) \to \frac{\pi}{2}
+\]
+\[
+F_X(\infty) = \frac{1}{2} + \frac{1}{2} = 1
+\]
+
+Step 2: Since $\tan^{-1}(x)$ is increasing, the function is non-decreasing.
+
+Step 3: Values remain between 0 and 1.
+
+✔ Valid CDF.
+
+\subsection*{(b)}
+
+\[
+F_X(x) = (1 - e^{-x})u(x)
+\]
+
+Step-by-step verification
+
+Step 1: For $x < 0$,
+\[
+u(x) = 0 \Rightarrow F_X(x) = 0
+\]
+
+Step 2: For $x \ge 0$,
+\[
+F_X(x) = 1 - e^{-x}
+\]
+
+Step 3: Limits:
+\[
+F_X(-\infty) = 0, \qquad F_X(\infty) = 1
+\]
+
+Step 4: Function increases with $x$.
+
+✔ Valid CDF.
+
+\subsection*{(c)}
+
+\[
+F_X(x) = e^{-x^2}
+\]
+
+As $x \to \infty$,
+\[
+F_X(x) \to 0
+\]
+which violates $F_X(\infty) = 1$.
+
+✘ Invalid CDF.
+
+\subsection*{(d)}
+
+\[
+F_X(x) = x^2 u(x)
+\]
+
+As $x \to \infty$,
+\[
+F_X(x) \to \infty
+\]
+which violates $0 \le F_X(x) \le 1$.
+
+✘ Invalid CDF.
+
+\section{Worked Example 2 --- Computing Probabilities from a CDF}
+
+Given:
+\[
+F_X(x) = (1 - e^{-x})u(x)
+\]
+
+\subsection*{(a)}
+
+\[
+\Pr(X > 5)
+\]
+
+Step 1:
+\[
+\Pr(X > 5) = 1 - \Pr(X \le 5)
+\]
+
+Step 2:
+\[
+= 1 - F_X(5)
+\]
+
+Step 3:
+\[
+= 1 - (1 - e^{-5})
+\]
+
+Result:
+\[
+= e^{-5}
+\]
+
+\subsection*{(b)}
+
+\[
+\Pr(X < 5)
+\]
+
+\[
+\Pr(X < 5) = F_X(5) = 1 - e^{-5}
+\]
+
+\subsection*{(c)}
+
+\[
+\Pr(3 < X < 7)
+\]
+
+Step 1:
+\[
+\Pr(3 < X < 7) = F_X(7) - F_X(3)
+\]
+
+Step 2:
+\[
+= (1 - e^{-7}) - (1 - e^{-3})
+\]
+
+Result:
+\[
+= e^{-3} - e^{-7}
+\]
+
+\subsection*{(d) Conditional Probability}
+
+\[
+\Pr(X > 5 \mid X < 7)
+\]
+
+Step 1:
+
+Let
+\[
+A = \{X > 5\}, \qquad B = \{X < 7\}
+\]
+
+Step 2:
+\[
+\Pr(A \mid B) = \frac{\Pr(A \cap B)}{\Pr(B)}
+\]
+
+\[
+\Pr(A \cap B) = \Pr(5 < X < 7) = F_X(7) - F_X(5)
+\]
+
+\[
+\Pr(B) = F_X(7)
+\]
+
+Step 3:
+
+Final expression:
+\[
+\Pr(X > 5 \mid X < 7)
+=
+\frac{F_X(7) - F_X(5)}{F_X(7)}
+\]
+
+\section{Probability Density Function (PDF)}
+
+\subsection{Definition}
+
+For a continuous random variable $X$,
+
+\[
+f_X(x) =
+\lim_{\epsilon \to 0}
+\frac{\Pr(x \le X < x+\epsilon)}{\epsilon}
+\]
+
+\subsection{Relationship Between PDF and CDF (Step-by-Step Derivation)}
+
+From the slides:
+
+For a continuous range,
+\[
+\Pr(x \le X < x+\epsilon) = F_X(x+\epsilon) - F_X(x)
+\]
+
+Substitute into PDF definition:
+\[
+f_X(x) =
+\lim_{\epsilon \to 0}
+\frac{F_X(x+\epsilon) - F_X(x)}{\epsilon}
+\]
+
+By definition of derivative,
+\[
+f_X(x) = \frac{d}{dx}F_X(x)
+\]
+
+\subsection{Result (Converse Statement)}
+
+The CDF can be written as the integral of the PDF:
+\[
+F_X(x) = \int_{-\infty}^{x} f_X(t)\, dt
+\]
+
+\section{Expectation of Random Variables (As Listed in Slides)}
+
+The lecture includes:
+
+Definition and example of expectation
+
+Expectation of a function of a random variable
+
+Linear operation with expectation
+
+n-th moments and central moments:
+\begin{itemize}
+\item Variance
+\item Skewness
+\item Kurtosis
+\end{itemize}
+
+(Only topics listed in slides are included; no additional formulas introduced.)
+
+End of Lecture Scribe
+
+This lecture scribe is:
+
+Fully restricted to lecture slide content
+
+Structured for exam revision
+
+Step-by-step where derivations appear in slides
+
+Free from external intuition or added explanations
+
+If required, another independent version with a different structural ordering can be generated while remaining fully slide-faithful.
+
+\end{document}
