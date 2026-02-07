@@ -1,0 +1,320 @@
+\documentclass[11pt]{article}
+
+% ===================== PACKAGES =====================
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{xcolor} 
+
+% ===================== HEADER & FOOTER =====================
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{CSE 400: Fundamentals of Probability in Computing}
+\rhead{Lecture-7 Scribe Submission}
+\cfoot{\thepage}
+
+% ===================== CUSTOM COMMANDS =====================
+\newcommand{\solution}{
+    \vspace{0.5cm}
+    \noindent\textbf{\textcolor{blue}{Solution:}}
+    \vspace{0.2cm}
+    
+}
+
+% ===================== TITLE =====================
+\title{
+    \normalsize School of Engineering and Applied Science (SEAS), Ahmedabad University \\
+    \vspace{0.2cm}
+    \textbf{CSE 400: Fundamentals of Probability in Computing}\\
+    \Large Lecture-7 Scribe Submission
+}
+\author{} 
+\date{}
+
+\begin{document}
+\maketitle
+
+\vspace{-2cm}
+\begin{center}
+    \begin{tabular}{ll}
+        \textbf{Name:} & {Jashvi Shah \hspace{2.5in}} \\ [1.5ex]
+        \textbf{Enrollment No:} & {AU2440026 \hspace{2.5in}} \\ [1.5ex]
+        \textbf{Email:} & {jashvi.s@ahduni.edu.in \hspace{2.1in}} \\ [1.5ex]
+        \textbf{Date of Submission:} & {Febrauary 7\textsuperscript{th}, 2026 (11:59 PM) \hspace{1.2in}}
+    \end{tabular}
+\end{center}
+
+\hrule
+\vspace{0.5cm}
+
+\section*{CSE400 – Lecture 7 Scribe}
+
+
+\textbf{Lecture:} Expectation, CDFs, PDFs and Problem Solving\\
+\textbf{Instructor:} Dhaval Patel\\
+\textbf{Date:} Jan 27, 2025
+
+\bigskip
+
+\section*{1. Lecture Structure}
+
+According to the outline on page 2, the lecture covers:
+
+\begin{itemize}
+\item Cumulative Distribution Function (CDF)
+\begin{itemize}
+\item Definition
+\item Properties
+\item Example
+\end{itemize}
+\item Probability Density Function (PDF)
+\begin{itemize}
+\item Definition
+\item Properties
+\item Example
+\end{itemize}
+\item Expectation of Random Variables
+\begin{itemize}
+\item Definition
+\item Expectation of function of RV
+\item Linearity
+\item Moments \& Central Moments
+\item Variance
+\item Skewness
+\item Kurtosis
+\end{itemize}
+\item L7\_S2\_A\_Revised
+\end{itemize}
+
+\section*{2. Cumulative Distribution Function (CDF)}
+
+\subsection*{2.1 Conceptual Illustration}
+
+The diagram on pages 3–4 shows a cylindrical tank analogy:
+
+\begin{itemize}
+\item Height corresponds to value of random variable
+\item Accumulated volume corresponds to cumulative probability
+\item Maximum filled volume corresponds to probability 1
+\end{itemize}
+
+This visual introduces cumulative accumulation behavior.
+
+\subsection*{2.2 Definition}
+
+For random variable $X$:
+
+\[
+F_X(x)=Pr(X \le x)
+\]
+
+This function characterizes the probability behavior of the experiment.
+
+\subsection*{2.3 Properties}
+
+Bounds
+\[
+0 \le F_X(x) \le 1
+\]
+
+Limits
+\[
+F_X(-\infty)=0
+\]
+\[
+F_X(\infty)=1
+\]
+
+Monotonicity
+\[
+x_1 < x_2 \Rightarrow F_X(x_1)\le F_X(x_2)
+\]
+
+Interval Probability
+\[
+Pr(x_1<X\le x_2)=F_X(x_2)-F_X(x_1)
+\]
+
+\subsection*{2.4 Example (Validity)}
+
+Slides present candidate functions and verify whether they satisfy CDF properties by checking:
+
+\begin{itemize}
+\item Range constraint
+\item Monotonic increase
+\item Proper limits
+\end{itemize}
+
+Functions violating these conditions are rejected.
+
+\subsection*{2.5 Example (Probability Computation)}
+
+Given
+\[
+F_X(x)=(1-e^{-x})u(x)
+\]
+
+Probabilities computed using:
+
+\[
+Pr(X>a)=1-F_X(a)
+\]
+
+\[
+Pr(a<X<b)=F_X(b)-F_X(a)
+\]
+
+\[
+Pr(X>a \mid X<b)=\frac{F_X(b)-F_X(a)}{F_X(b)}
+\]
+
+\section*{3. Probability Density Function (PDF)}
+
+\subsection*{3.1 Definition}
+
+\[
+f_X(x)=\lim_{\epsilon\to 0}\frac{Pr(x\le X<x+\epsilon)}{\epsilon}
+\]
+
+Using relation with CDF:
+
+\[
+f_X(x)=\frac{d}{dx}F_X(x)
+\]
+
+\subsection*{3.2 Fundamental Relationship}
+
+\[
+F_X(x)=\int_{-\infty}^{x} f_X(y)\,dy
+\]
+
+Thus:
+
+PDF = derivative of CDF
+
+CDF = integral of PDF
+
+\subsection*{3.3 Properties}
+
+Non-negativity
+\[
+f_X(x)\ge 0
+\]
+
+Normalization
+\[
+\int_{-\infty}^{\infty} f_X(x)\,dx = 1
+\]
+
+Interval Probability
+\[
+Pr(a<X\le b)=\int_a^b f_X(x)\,dx
+\]
+
+\subsection*{3.4 Examples}
+
+Slides show checking candidate PDFs by verifying:
+
+\begin{itemize}
+\item Non-negative over domain
+\item Integrates to 1
+\end{itemize}
+
+Conversion examples:
+
+From CDF $\rightarrow$ PDF
+
+Differentiate given CDF expression.
+
+From PDF $\rightarrow$ CDF
+
+Integrate given PDF expression.
+
+\section*{4. Expectation of Random Variables}
+
+\subsection*{4.1 Definition}
+
+Discrete case:
+
+\[
+E[X]=\sum x_k\, p_X(x_k)
+\]
+
+Continuous case:
+
+\[
+E[X]=\int x f_X(x)\,dx
+\]
+
+L7\_S2\_A\_Revised
+
+\subsection*{4.2 Expectation of Function of RV}
+
+\[
+E[g(X)]=\sum g(x_k)p_X(x_k)
+\]
+
+or
+
+\[
+\int g(x)f_X(x)\,dx
+\]
+
+\subsection*{4.3 Linearity of Expectation}
+
+\[
+E[aX+b]=aE[X]+b
+\]
+
+\section*{5. Moments and Central Moments}
+
+\subsection*{5.1 n-th Moment}
+
+\[
+E[X^n]
+\]
+
+\subsection*{5.2 Central Moment}
+
+\[
+E[(X-\mu)^n]
+\]
+
+with
+
+\[
+\mu=E[X]
+\]
+
+\subsection*{5.3 Variance}
+
+\[
+\sigma^2 = E[X^2]-\mu^2
+\]
+
+\subsection*{5.4 Higher-Order Shape Measures}
+
+Slides identify:
+
+\begin{itemize}
+\item Skewness
+\item Kurtosis
+\end{itemize}
+
+as derived from higher central moments.
+
+\section*{6. Logical Flow Summary}
+
+Lecture progression:
+
+\begin{itemize}
+\item Introduce cumulative probability representation
+\item Define and analyze CDF
+\item Derive PDF and relationships
+\item Apply through examples
+\item Introduce expectation and linearity
+\item Extend to moments and distribution shape
+\end{itemize}
+
+\end{document}
