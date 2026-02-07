@@ -1,0 +1,235 @@
+\documentclass[12pt]{article}
+
+% Packages
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{amsmath, amssymb}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{enumitem}
+
+% Formatting
+\onehalfspacing
+\setlist[itemize]{noitemsep, topsep=0pt}
+\setlist[enumerate]{noitemsep, topsep=0pt}
+
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}{\normalsize\itshape}{\thesubsubsection}{0.5em}{}
+
+\begin{document}
+
+\begin{center}
+    {\Large \textbf{CSE400 -- Fundamentals of Probability in Computing}}\\[0.2cm]
+    {\large Lecture 7: Expectation, CDFs, PDFs and Problem Solving}\\[0.3cm]
+    \textbf{Instructor:} Dhaval Patel, PhD\\
+    \textbf{Date:} January 27, 2025
+\end{center}
+
+
+\section{The Cumulative Distribution Function (CDF)}
+
+\subsection{Definition}
+
+Let $X$ be a random variable. The \textbf{Cumulative Distribution Function (CDF)} of $X$ is defined as
+\[
+F_X(x) = P(X \le x).
+\]
+
+\subsubsection*{Step-by-Step Reasoning}
+
+\begin{enumerate}
+    \item Consider the event $\{X \le x\}$.
+    \item This event contains all outcomes for which the random variable takes a value less than or equal to $x$.
+    \item The probability of this event defines the cumulative distribution up to the point $x$.
+\end{enumerate}
+
+This definition applies to both discrete and continuous random variables.
+
+\subsection{Properties of the CDF}
+
+From the definition $F_X(x) = P(X \le x)$, the following properties follow directly:
+
+\begin{enumerate}
+    \item \textbf{Non-decreasing property}\\
+    If $x_1 < x_2$, then $\{X \le x_1\} \subseteq \{X \le x_2\}$, and hence
+    \[
+    F_X(x_1) \le F_X(x_2).
+    \]
+
+    \item \textbf{Boundary conditions}
+    \[
+    \lim_{x \to -\infty} F_X(x) = 0, \qquad
+    \lim_{x \to +\infty} F_X(x) = 1.
+    \]
+
+    \item \textbf{Right-continuity}\\
+    The CDF is right-continuous due to properties of probability measures.
+
+    \item \textbf{Interval probability}
+    For $a < b$,
+    \[
+    P(a < X \le b) = F_X(b) - F_X(a).
+    \]
+\end{enumerate}
+
+\subsection{Example (as per slide structure)}
+
+An example CDF is obtained by accumulating probabilities for a discrete random variable or by integrating a density function for a continuous random variable up to the value $x$. No additional numerical example is introduced.
+
+\section{The Probability Density Function (PDF)}
+
+\subsection{Definition}
+
+For a \textbf{continuous random variable} $X$, the \textbf{Probability Density Function (PDF)} $f_X(x)$ is defined through its relationship with the CDF:
+\[
+F_X(x) = \int_{-\infty}^{x} f_X(t)\, dt.
+\]
+
+Where differentiable,
+\[
+f_X(x) = \frac{d}{dx} F_X(x).
+\]
+
+\subsubsection*{Step-by-Step Reasoning}
+
+\begin{enumerate}
+    \item The CDF accumulates probability up to $x$.
+    \item The PDF represents the rate of change of this accumulated probability.
+    \item Differentiation of the CDF yields the PDF.
+\end{enumerate}
+
+\subsection{Properties of the PDF}
+
+\begin{enumerate}
+    \item \textbf{Non-negativity}
+    \[
+    f_X(x) \ge 0 \quad \text{for all } x.
+    \]
+
+    \item \textbf{Total probability equals one}
+    \[
+    \int_{-\infty}^{+\infty} f_X(x)\, dx = 1.
+    \]
+
+    \item \textbf{Probability over an interval}\\
+    For $a < b$,
+    \[
+    P(a < X < b) = \int_a^b f_X(x)\, dx.
+    \]
+\end{enumerate}
+
+\subsection{Example (as per slide structure)}
+
+Given a PDF, probabilities are computed by integrating over the desired interval, and the CDF is obtained by integrating from $-\infty$ to $x$.
+
+\section{Expectation of Random Variables}
+
+\subsection{Definition}
+
+The \textbf{Expectation} of a random variable $X$ is defined as:
+
+\begin{itemize}
+    \item \textbf{Discrete case}
+    \[
+    \mathbb{E}[X] = \sum_x x \, P(X = x).
+    \]
+
+    \item \textbf{Continuous case}
+    \[
+    \mathbb{E}[X] = \int_{-\infty}^{+\infty} x \, f_X(x)\, dx.
+    \]
+\end{itemize}
+
+\subsubsection*{Step-by-Step Reasoning}
+
+\begin{enumerate}
+    \item Each value of $X$ is weighted by its probability or density.
+    \item The sum or integral aggregates these weighted values.
+    \item The result represents the long-run average value.
+\end{enumerate}
+
+\subsection{Example (as per slide structure)}
+
+Expectation is computed directly using the PMF or PDF without introducing additional numerical examples.
+
+\section{Expectation of a Function of a Random Variable}
+
+Let $Y = g(X)$. The expectation of $Y$ is:
+
+\begin{itemize}
+    \item \textbf{Discrete case}
+    \[
+    \mathbb{E}[g(X)] = \sum_x g(x)\, P(X = x).
+    \]
+
+    \item \textbf{Continuous case}
+    \[
+    \mathbb{E}[g(X)] = \int_{-\infty}^{+\infty} g(x)\, f_X(x)\, dx.
+    \]
+\end{itemize}
+
+The expectation is computed directly with respect to the distribution of $X$.
+
+\section{Linear Operation with Expectation}
+
+\subsection{Linearity Property}
+
+For random variables $X$ and $Y$, and constants $a$ and $b$:
+\[
+\mathbb{E}[aX + bY] = a\mathbb{E}[X] + b\mathbb{E}[Y].
+\]
+
+\subsubsection*{Justification}
+
+\begin{enumerate}
+    \item Apply the definition of expectation.
+    \item Use linearity of summation or integration.
+    \item Factor out constants.
+\end{enumerate}
+
+No independence assumption is required.
+
+\section{Moments and Central Moments}
+
+\subsection{nth Moment}
+
+The \textbf{nth moment} of a random variable $X$ is
+\[
+\mathbb{E}[X^n].
+\]
+
+\subsection{Central Moments}
+
+The \textbf{nth central moment} is
+\[
+\mathbb{E}[(X - \mu)^n], \quad \mu = \mathbb{E}[X].
+\]
+
+\subsection{Variance}
+
+Variance is the second central moment:
+\[
+\mathrm{Var}(X) = \mathbb{E}[(X - \mu)^2].
+\]
+
+Using expansion,
+\[
+(X - \mu)^2 = X^2 - 2\mu X + \mu^2,
+\]
+which gives
+\[
+\mathrm{Var}(X) = \mathbb{E}[X^2] - (\mathbb{E}[X])^2.
+\]
+
+\subsection{Skewness}
+
+Skewness corresponds to the third central moment and measures distribution asymmetry.
+
+\subsection{Kurtosis}
+
+Kurtosis corresponds to the fourth central moment and measures tail behavior.
+
+\section*{End of Lecture 7 Scribe}
+
+\end{document}
