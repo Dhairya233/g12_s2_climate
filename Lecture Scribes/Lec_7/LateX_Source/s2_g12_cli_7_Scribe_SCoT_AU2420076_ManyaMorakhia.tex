@@ -1,0 +1,350 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{\textbf{CSE400 -- Lecture 7}\\
+Expectation, CDFs, PDFs and Problem Solving}
+\date{January 27, 2025}
+
+\begin{document}
+
+\maketitle
+
+\section*{1. Lecture Structure (Page 2)}
+
+According to the outline:
+
+\begin{itemize}
+\item Cumulative Distribution Function (CDF)
+\begin{itemize}
+\item Definition
+\item Properties
+\item Examples
+\end{itemize}
+
+\item Probability Density Function (PDF)
+\begin{itemize}
+\item Definition
+\item CDF--PDF Relationship
+\end{itemize}
+
+\item Expectation of Random Variables (introduced later)
+\end{itemize}
+
+The lecture follows this order.
+
+\section*{2. Intuition: CDF and PDF (Water Tank Analogy)}
+
+\subsection*{Given Model}
+
+A cylindrical water tank:
+
+\begin{itemize}
+\item Radius = $R$
+\item Height = $H$
+\item Water height = $h$
+\end{itemize}
+
+\subsection*{Interpretation}
+
+The slide states:
+
+\begin{quote}
+Height $h \rightarrow$ value of random variable $X$\\
+Volume up to $h \rightarrow$ cumulative probability
+\end{quote}
+
+So:
+
+\begin{itemize}
+\item Each height corresponds to a value of $X$
+\item Accumulated water corresponds to $\Pr(X \le h)$
+\end{itemize}
+
+Thus:
+
+\[
+\text{Volume up to } h \;\longleftrightarrow\; F_X(h)
+\]
+
+\subsection*{Volume Calculation}
+
+Given:
+
+\[
+V(h) = \int_{0}^{h} \pi R^2 \, dh
+\]
+
+Step-by-step:
+
+\begin{itemize}
+\item Cross-sectional area = $\pi R^2$
+\item Volume = Area $\times$ Height
+\item Integrate area from $0$ to $h$
+\end{itemize}
+
+Result:
+
+\[
+V(h) = (\pi R^2)h
+\]
+
+\subsection*{Probability Interpretation}
+
+Maximum volume:
+
+\[
+V(H) = \pi R^2 H
+\]
+
+This corresponds to total probability = $1$.
+
+Thus:
+
+\begin{itemize}
+\item $\pi R^2$ behaves like a constant PDF
+\item $V(h)$ behaves like a CDF
+\end{itemize}
+
+CDF = accumulated PDF.
+
+\section*{3. Cumulative Distribution Function (CDF)}
+
+\subsection*{3.1 Definition}
+
+The slide defines:
+
+\[
+F_X(x) = \Pr(X \le x), \quad -\infty < x < \infty
+\]
+
+Step-by-step meaning:
+
+\begin{itemize}
+\item Fix a real number $x$
+\item Consider the event: ``$X \le x$''
+\item Compute its probability
+\item That probability is $F_X(x)$
+\end{itemize}
+
+So:
+
+The CDF gives the total probability accumulated up to $x$.
+
+\subsection*{Importance}
+
+The slide states:
+
+Most information about the random experiment is determined by the behavior of $F_X(x)$.
+
+Meaning:
+
+Knowing $F_X(x)$ allows us to compute all probabilities.
+
+CDF fully characterizes the random variable.
+
+\subsection*{3.2 Properties of CDF}
+
+\subsubsection*{Property 1: Boundedness}
+
+\[
+0 \le F_X(x) \le 1
+\]
+
+Reasoning:
+
+$F_X(x)$ is a probability.
+
+\subsubsection*{Property 2: Limits}
+
+\[
+F_X(-\infty)=0, \quad F_X(\infty)=1
+\]
+
+Reasoning:
+
+\begin{itemize}
+\item At $-\infty$, probability is $0$
+\item At $+\infty$, probability is $1$
+\end{itemize}
+
+\subsubsection*{Property 3: Monotonicity}
+
+For $x_1 < x_2$:
+
+\[
+F_X(x_1) \le F_X(x_2)
+\]
+
+Reasoning:
+
+\[
+\{X \le x_1\} \subset \{X \le x_2\}
+\]
+
+\subsubsection*{Property 4: Interval Probability}
+
+For $x_1 < x_2$:
+
+\[
+\Pr(x_1 < X \le x_2)=F_X(x_2)-F_X(x_1)
+\]
+
+Derivation:
+
+\[
+\Pr(X \le x_2)=\Pr(X \le x_1)+\Pr(x_1<X\le x_2)
+\]
+
+Rearranging:
+
+\[
+\Pr(x_1<X\le x_2)=F_X(x_2)-F_X(x_1)
+\]
+
+\section*{4. CDF Example \#1: Validity Check}
+
+\subsection*{(a)}
+
+\[
+F_X(x)=\frac{1}{2}+\frac{1}{\pi}\tan^{-1}(x)
+\]
+
+Range of $\tan^{-1}(x)$ is $(-\pi/2,\pi/2)$.
+
+So range is $(0,1)$.
+
+Valid CDF.
+
+\subsection*{(b)}
+
+\[
+F_X(x)=(1-e^{-x})u(x)
+\]
+
+Valid CDF.
+
+\subsection*{(c)}
+
+\[
+F_X(x)=e^{-x^2}
+\]
+
+Invalid.
+
+\subsection*{(d)}
+
+\[
+F_X(x)=x^2u(x)
+\]
+
+Invalid.
+
+\section*{5. CDF Example \#2}
+
+Given:
+
+\[
+F_X(x)=(1-e^{-x})u(x)
+\]
+
+\subsection*{(a)}
+
+\[
+\Pr(X>5)=1-F_X(5)=e^{-5}
+\]
+
+\subsection*{(b)}
+
+\[
+\Pr(X<5)=F_X(5)=1-e^{-5}
+\]
+
+\subsection*{(c)}
+
+\[
+\Pr(3<X<7)=F_X(7)-F_X(3)=e^{-3}-e^{-7}
+\]
+
+\subsection*{(d)}
+
+Let $A=\{X>5\}$, $B=\{X<7\}$.
+
+\[
+\Pr(A|B)=\frac{F(7)-F(5)}{F(7)}
+\]
+
+\section*{6. Probability Density Function (PDF)}
+
+\subsection*{6.1 Definition}
+
+\[
+f_X(x)=\lim_{\varepsilon\to 0}
+\frac{\Pr(x<X<x+\varepsilon)}{\varepsilon}
+\]
+
+\subsection*{6.2 Using CDF}
+
+\[
+\Pr(x<X<x+\varepsilon)=F_X(x+\varepsilon)-F_X(x)
+\]
+
+\[
+f_X(x)=\lim_{\varepsilon\to 0}
+\frac{F_X(x+\varepsilon)-F_X(x)}{\varepsilon}
+\]
+
+\subsection*{6.3 PDF--CDF Relationship}
+
+\[
+f_X(x)=\frac{dF_X(x)}{dx}
+\]
+
+\subsection*{6.4 Inverse Relationship}
+
+\[
+F_X(x)=\int_{-\infty}^{x} f_X(t)\,dt
+\]
+
+\section*{7. Expectation of Random Variables}
+
+Only heading is visible.
+
+No further content available.
+
+\section*{Final Exam-Oriented Logical Map}
+
+\subsection*{CDF}
+
+\[
+F_X(x)=\Pr(X\le x)
+\]
+
+Properties:
+
+\begin{itemize}
+\item $0\le F\le 1$
+\item $F(-\infty)=0,\;F(\infty)=1$
+\item Non-decreasing
+\item $\Pr(a<X\le b)=F(b)-F(a)$
+\end{itemize}
+
+\subsection*{PDF}
+
+\[
+f(x)=\lim_{\varepsilon\to 0}
+\frac{\Pr(x<X<x+\varepsilon)}{\varepsilon}
+\]
+
+\[
+f(x)=\frac{dF(x)}{dx}
+\]
+
+\[
+F(x)=\int_{-\infty}^{x} f(t)\,dt
+\]
+
+\end{document}
+
