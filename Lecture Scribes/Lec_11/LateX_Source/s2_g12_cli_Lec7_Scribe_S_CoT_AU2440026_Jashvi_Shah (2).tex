@@ -1,0 +1,214 @@
+\documentclass[11pt]{article}
+
+% ===================== PACKAGES =====================
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{xcolor} 
+
+% ===================== HEADER & FOOTER =====================
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{CSE 400: Fundamentals of Probability in Computing}
+\rhead{Lecture-11 Scribe Submission}
+\cfoot{\thepage}
+
+% ===================== CUSTOM COMMANDS =====================
+\newcommand{\solution}{
+    \vspace{0.5cm}
+    \noindent\textbf{\textcolor{blue}{Solution:}}
+    \vspace{0.2cm}
+    
+}
+
+% ===================== TITLE =====================
+\title{
+    \normalsize School of Engineering and Applied Science (SEAS), Ahmedabad University \\
+    \vspace{0.2cm}
+    \textbf{CSE 400: Fundamentals of Probability in Computing}\\
+    \Large Lecture-11 Scribe Submission
+}
+\author{} 
+\date{}
+
+\begin{document}
+\maketitle
+
+\vspace{-2cm}
+\begin{center}
+    \begin{tabular}{ll}
+        \textbf{Name:} & {Jashvi Shah \hspace{2.5in}} \\ [1.5ex]
+        \textbf{Enrollment No:} & {AU2440026 \hspace{2.5in}} \\ [1.5ex]
+        \textbf{Email:} & {jashvi.s@ahduni.edu.in \hspace{2.1in}} \\ [1.5ex]
+    \end{tabular}
+\end{center}
+
+\hrule
+\vspace{0.5cm}
+
+\section*{CSE400 – Lecture 11 Scribe}
+
+\date{Instructor: Dhaval Patel, PhD \\ Date: February 10, 2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Lecture Structure and Objective}
+
+\subsection{Outline of the Lecture}
+
+The lecture consisted of three main components:
+
+\begin{enumerate}
+    \item Transformation of Random Variables
+    \begin{itemize}
+        \item Learning transformation techniques for random variables.
+    \end{itemize}
+    
+    \item Function of Two Random Variables
+    \begin{itemize}
+        \item Understanding joint transformations and derived distributions.
+    \end{itemize}
+    
+    \item Illustrative Example
+    \begin{itemize}
+        \item Detailed derivation for the case:
+        \[
+        Z = X + Y
+        \]
+    \end{itemize}
+\end{enumerate}
+
+\section{Transformation of Random Variables}
+
+\subsection{Definition and Notation}
+
+Let $X$ denote an original random variable.
+
+Let $Z$ denote a new random variable obtained through transformation of $X$.
+
+Thus, a transformation is represented as:
+\[
+Z = g(X)
+\]
+
+\subsection{Objective of Transformation}
+
+Transformation techniques are used to:
+
+\begin{itemize}
+    \item Derive new random variables from existing ones.
+    \item Study how the properties of the original variable affect the transformed variable.
+\end{itemize}
+
+\subsection{Reasoning and Logical Development}
+
+Step-wise reasoning presented in lecture:
+
+\begin{enumerate}
+    \item Begin with a known random variable.
+    \item Apply a mathematical function to the variable.
+    \item The output of the function becomes a new random variable.
+    \item Transformation techniques help determine the behavior and characteristics of the new variable.
+\end{enumerate}
+
+\subsection{Assumptions and Conditions}
+
+\begin{itemize}
+    \item The transformation is defined using a function applied to an existing random variable.
+    \item The resulting value is treated as a random variable.
+\end{itemize}
+
+\section{Function of Two Random Variables}
+
+\subsection{Definition and Notation}
+
+Let $X$ and $Y$ denote two random variables.
+
+Let $Z$ denote a new random variable obtained from both variables.
+
+The transformation is represented as:
+\[
+Z = g(X,Y)
+\]
+
+\subsection{Concept of Joint Transformation}
+
+Joint transformation involves:
+
+\begin{itemize}
+    \item Combining two random variables.
+    \item Producing a new random variable using a function of both variables.
+    \item Studying derived distributions based on the joint behavior of the original variables.
+\end{itemize}
+
+\subsection{Logical Step-by-Step Reasoning}
+
+\begin{enumerate}
+    \item Start with two random variables.
+    \item Define a function involving both variables.
+    \item Apply the function to generate a new random variable.
+    \item Analyze the derived distribution of the new variable.
+\end{enumerate}
+
+\subsection{Result Emphasized in Lecture}
+
+\begin{itemize}
+    \item Functions of multiple random variables lead to derived distributions.
+    \item Joint transformation extends the idea of transformation from one variable to multiple variables.
+\end{itemize}
+
+\section{Illustrative Example: $Z = X + Y$}
+
+\subsection{Statement of the Example}
+
+The lecture provided a detailed derivation example using:
+\[
+Z = X + Y
+\]
+
+\subsection{Objective of the Example}
+
+\begin{itemize}
+    \item To demonstrate practical application of joint transformation.
+    \item To illustrate how a new random variable is formed from two variables.
+\end{itemize}
+
+\subsection{Step-by-Step Reasoning Provided}
+
+\begin{enumerate}
+    \item Consider two random variables $X$ and $Y$.
+    \item Define a new variable $Z$ as the sum of the two variables.
+    \item The value of $Z$ depends on the combined values of $X$ and $Y$.
+    \item The derived distribution of $Z$ is determined from the joint behavior of $X$ and $Y$.
+\end{enumerate}
+
+\subsection{Key Insight from Example}
+
+\begin{itemize}
+    \item Summation of two random variables is a special case of transformation involving two variables.
+    \item The example demonstrates how transformation techniques are applied to derive new distributions.
+\end{itemize}
+
+\section{Logical Flow of Ideas Across the Lecture}
+
+The lecture followed the progression:
+
+\begin{enumerate}
+    \item Introduction to transformation of a single random variable.
+    \item Extension of transformation techniques to functions involving two random variables.
+    \item Application of concepts using the summation example.
+\end{enumerate}
+
+\section{Key Takeaways}
+
+\begin{itemize}
+    \item Transformation methods allow creation and analysis of new random variables.
+    \item Joint transformations consider relationships between multiple variables.
+    \item Derived distributions describe outcomes resulting from transformations.
+    \item The example $Z = X + Y$ demonstrates practical implementation of transformation concepts.
+\end{itemize}
+
+\end{document}
