@@ -1,0 +1,323 @@
+\documentclass[12pt]{article}
+
+% Packages
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+% Formatting
+\onehalfspacing
+\setlist[itemize]{noitemsep, topsep=0pt}
+\setlist[enumerate]{noitemsep, topsep=0pt}
+
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}{\normalsize\itshape}{\thesubsubsection}{0.5em}{}
+
+\begin{document}
+
+\begin{center}
+    {\Large \textbf{CSE400 -- Lecture 3 Scribe}}\\[0.3cm]
+    {\large Project Kickoff and Undergraduate Research Programme (UGRP)}
+\end{center}
+
+\vspace{0.5cm}
+
+\section{Course Project Component}
+
+\subsection{Definition}
+The CSE400 course includes a \textbf{Project Kickoff} component carrying a weightage of \textbf{30\%} of the total course evaluation.
+
+\subsection{Assumption}
+Since the project carries significant weightage, it is intended to be a core learning and evaluation mechanism rather than an auxiliary activity.
+
+\section{Project Team Formation}
+
+\subsection{Requirement}
+\textbf{Deadline:} 17 January 2026 (Saturday, End of Day)
+
+\subsection{Reasoning}
+\begin{itemize}
+    \item The project is group-based.
+    \item Group-based execution requires early coordination.
+    \item A fixed team formation deadline ensures timely initiation of project milestones.
+\end{itemize}
+
+\section{Project Execution Guidelines}
+
+\subsection{Weightage}
+Total project weightage: \textbf{30\%}
+
+\subsection{Structure}
+\begin{itemize}
+    \item The project consists of six major milestones (M1--M6).
+    \item One submission per group is required for each milestone.
+\end{itemize}
+
+\subsection{Assumption}
+The milestones are sequential and cumulative, meaning each stage builds upon the previous one.
+
+\section{Milestone-Wise Project Execution}
+
+\subsection{M1: Kickstart}
+
+\subsubsection{Components}
+\begin{itemize}
+    \item Team Formation
+    \item Area Identification
+    \item Background
+    \item Motivation
+    \item Problem Formulation
+\end{itemize}
+
+\subsubsection{Step-by-Step Reasoning}
+\begin{itemize}
+    \item A project must begin with a clearly identified domain.
+    \item Understanding the background provides context.
+    \item Motivation justifies the importance of the problem.
+    \item Based on background and motivation, the problem is formally formulated.
+\end{itemize}
+
+\subsection{M2: Mathematical Modeling}
+
+\subsubsection{Definition}
+Mathematical modeling of the selected problem using:
+\begin{itemize}
+    \item Random Variables (RV)
+    \item PMF / PDF
+    \item CDF
+    \item Multivariate Random Variables
+    \item Joint PMF / PDF / CDF
+\end{itemize}
+
+\subsubsection{Step-by-Step Reasoning}
+\begin{itemize}
+    \item Real-world problems contain uncertainty.
+    \item Uncertainty is modeled using random variables.
+    \item PMF/PDF describes probabilistic behavior.
+    \item CDF captures cumulative probability.
+    \item Joint distributions are required for multiple variables.
+\end{itemize}
+
+\subsection{M3: Coding}
+
+\subsubsection{Components}
+\begin{itemize}
+    \item Simulation
+    \item Computation
+\end{itemize}
+
+\subsubsection{Reasoning}
+\begin{itemize}
+    \item Mathematical models must be validated.
+    \item Simulation reproduces model behavior.
+    \item Computation provides numerical results.
+\end{itemize}
+
+\subsection{M4: Inference}
+
+\subsubsection{Components}
+\begin{itemize}
+    \item Choose a randomized algorithm
+    \item Understand the algorithm
+    \item Code the algorithm
+\end{itemize}
+
+\subsubsection{Assumption}
+Randomized algorithms are suitable for inference in the modeled problem domain.
+
+\subsubsection{Reasoning}
+\begin{itemize}
+    \item Algorithm selection precedes implementation.
+    \item Understanding ensures correctness.
+    \item Coding enables evaluation.
+\end{itemize}
+
+\subsection{M5: Randomized Algorithms}
+
+\subsubsection{Components}
+\begin{itemize}
+    \item Apply the randomized algorithm
+    \item Generate results
+    \item Compare with deterministic algorithms
+\end{itemize}
+
+\subsubsection{Step-by-Step Reasoning}
+\begin{itemize}
+    \item Apply the algorithm to the problem.
+    \item Obtain execution results.
+    \item Compare with deterministic methods.
+    \item Draw new inferences.
+\end{itemize}
+
+\subsection{M6: Bounds and Analysis}
+
+\subsubsection{Components}
+\begin{itemize}
+    \item Derive bounds
+    \item Perform analysis
+    \item Compile final deliverables
+\end{itemize}
+
+\subsubsection{Reasoning}
+\begin{itemize}
+    \item Theoretical bounds validate performance.
+    \item Analysis supports empirical results.
+    \item All outputs are compiled for final submission.
+\end{itemize}
+
+\section{Project Deliverables and Assessment}
+
+\subsection{Deliverables}
+\begin{itemize}
+    \item Codes
+    \item Reports
+    \item Videos
+    \item Other milestone-specific artifacts
+\end{itemize}
+
+\subsection{Assessment}
+\begin{itemize}
+    \item Team assessment before midsemester
+    \item Team assessment after midsemester
+    \item Final evaluation:
+    \begin{itemize}
+        \item Project Viva
+        \item Final Submission
+    \end{itemize}
+\end{itemize}
+
+\section{Submission \#1: Concept Evolution Maps}
+
+\subsection{Definition}
+Concept evolution maps visualize how project ideas evolve from initial concepts to final problem formulation.
+
+\subsection{Tools}
+\begin{itemize}
+    \item Miro
+    \item draw.io (diagrams.net)
+\end{itemize}
+
+\section{Submission \#2: Scribe -- Learning Reflection Logs}
+
+\subsection{Types}
+\begin{itemize}
+    \item Lecture Scribe
+    \item Project Scribe
+\end{itemize}
+
+\subsection{Lecture Scribe}
+\begin{itemize}
+    \item Assigned to two groups per lecture
+    \item Reflects lecture content
+    \item Minimum length: 8--10 pages
+\end{itemize}
+
+\subsection{Project Scribe Components}
+\begin{itemize}
+    \item Decision logs (Why X over Y?)
+    \item Constraints and alternatives
+    \item Final decisions
+    \item Evidence and justification
+    \item Trade-off matrices (Cost vs Performance vs Risk)
+\end{itemize}
+
+\section{Submission \#3: Multimodal Artifacts}
+
+\subsection{Definition}
+Artifacts may include video, audio, or visual materials.
+
+\subsection{Requirements}
+\begin{itemize}
+    \item One video per milestone
+    \item Duration: 10--15 minutes
+    \item Focus on content, not editing
+\end{itemize}
+
+\subsection{Types}
+\begin{itemize}
+    \item Think-Aloud Videos
+    \item One-Minute Insight Videos
+    \item Project Demo
+\end{itemize}
+
+\section{Introduction to UGRP-8 (2026--2027)}
+
+UGRP is introduced as a structured undergraduate research initiative.
+
+\section{Motivation for UGRP}
+
+\subsection{T-Shaped Engineer Concept}
+\textbf{Vertical bar:} Depth in a single technical discipline\\
+\textbf{Horizontal bar:} Ability to apply knowledge across disciplines and collaborate
+
+\subsection{Reasoning}
+UGRP aims to develop both technical depth and interdisciplinary breadth.
+
+\section{Philosophy of UGRP}
+
+\subsection{Core Principles}
+\begin{itemize}
+    \item Multidisciplinary
+    \item Experiential Learning
+    \item Research Driven
+\end{itemize}
+
+\subsection{4D Model}
+\begin{enumerate}
+    \item Discover
+    \item Design
+    \item Develop
+    \item Deliver
+\end{enumerate}
+
+\section{Technical Breadth Under UGRP}
+
+Includes:
+\begin{itemize}
+    \item CS and CSE
+    \item Data Science and Applied AI
+    \item Modern Computer System Design
+    \item Networks
+    \item IoT / IoBNT / IoV
+\end{itemize}
+
+\section{Industry and Research Activities}
+
+\subsection{Example}
+5G-enabled Intelligent Transportation Systems Testbed in Gujarat
+
+\subsection{Activities}
+\begin{itemize}
+    \item V2X communication
+    \item Sensor data collection
+    \item ITS dashboard development
+    \item Deep learning and deep-RL solutions
+    \item mmWave beam prediction
+    \item C-V2X and Wi-Fi coexistence
+\end{itemize}
+
+\section{Collaborations and Outcomes}
+
+\subsection{Evidence Presented}
+\begin{itemize}
+    \item International academic collaborations
+    \item IEEE conference and journal publications
+    \item Awards and recognitions
+    \item Alumni placements in industry and academia
+\end{itemize}
+
+\section{Conclusion of Lecture 3}
+
+Lecture 3 establishes:
+\begin{itemize}
+    \item The project execution framework of CSE400
+    \item A milestone-driven research methodology
+    \item The UGRP philosophy and its academic and industrial outcomes
+\end{itemize}
+
+The lecture emphasizes process, structure, and research orientation, forming the foundation for subsequent technical work in the course.
+
+\end{document}

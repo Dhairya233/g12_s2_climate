@@ -1,0 +1,28 @@
+LECTURE 3 PROMPT
+I have to prepare lecture scribe, which is an exam ready reconstruction of what was taught in class, for lecture 3.
+
+My prompt style is self consistency prompting with cot and its instructions are: 
+What Self-Consistency Prompting Means Self-consistency prompting extends Chain-of-Thought prompting by generating multiple reasoning-inclusive scribes using the same prompt and selecting the most consistent output. 
+9.2 Required Self-Consistency Prompt Components Your prompt must clearly include: 
+1. A Chain-of-Thought style instruction (Refer to section 8) 
+2. A requirement to include explicit reasoning in the scribe 
+3. A constraint that the same prompt and context be used across runs 6
+
+9.3 Mandatory Self-Consistency Workflow You must: 
+1. Use the same prompt across all runs 
+2. Use the same context across all runs 
+3. Generate multiple outputs independently 
+4. Select one scribe based on agreement in assumptions, reasoning steps, and conclusions 
+
+9.4 What You Must Do (Self-Consistency) You must: 
+• Use the same CoT prompt without modification 
+• Generate multiple scribe outputs independently 
+• Select the scribe that shows the greatest agreement in reasoning and conclusions 
+
+9.5 What You Must NOT Do (Self-Consistency) You must not: 
+• Merge or combine content from multiple outputs 
+• Edit or “clean up” reasoning manually 
+• Select an output based on fluency or length rather than consistency provide me with lecture scribe.
+
+The context in the scribe should include(if available in the ppt) Definitions and notation, Assumptions and conditions, Statements of theorems or results, Proofs or proof sketches, step by step, Worked examples, with intermediate steps, Clear logical flow between ideas. 
+Nothing should be outside of ppt. Do not add/modify anything externally

@@ -1,0 +1,424 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{enumitem}
+
+\setstretch{1.2}
+
+\begin{document}
+
+\title{CSE400 -- Fundamentals of Probability in Computing\\
+Lecture 3: Introduction to Probability Theory\\
+Lecture Scribe for Exam Revision}
+\author{}
+\date{}
+\maketitle
+
+\section{Opening Motivation (Page 2)}
+
+The lecture begins with the quotation:
+
+\begin{quote}
+``Good is the enemy of great. That’s why so few things become great.'' -- James C. Collins
+\end{quote}
+
+\subsection*{Step-by-Step Meaning}
+
+\begin{itemize}
+\item ``Good'' means doing only basic or minimum work.
+\item ``Great'' means deep understanding and continuous improvement.
+\item If students stop at ``good enough,'' they will not master concepts.
+\item In CSE400, students are expected to aim for strong conceptual clarity.
+\item This quotation prepares students mentally for serious learning.
+\end{itemize}
+
+\section{Learning Attitude: Growth and Fixed Mindset (Pages 3--4)}
+
+\subsection{Growth Mindset}
+
+The lecture presents the following ideas:
+
+\begin{itemize}
+\item ``Failure is an opportunity to grow''
+\item ``I like to try new things''
+\item ``I can learn to do anything I want''
+\item ``Challenges help me grow''
+\item ``My effort and attitude determine my abilities''
+\item ``Feedback is constructive''
+\item ``I am inspired by the success of others''
+\end{itemize}
+
+\subsection*{Step-by-Step Understanding}
+
+\begin{itemize}
+\item Failure is treated as a learning step.
+\item Trying new methods is encouraged.
+\item Learning is possible through effort.
+\item Difficult problems help improvement.
+\item Ability is linked to practice.
+\item Feedback helps correction.
+\item Others’ success motivates learning.
+\end{itemize}
+
+So, students are expected to:
+
+\begin{itemize}
+\item Practice regularly.
+\item Accept mistakes.
+\item Improve continuously.
+\end{itemize}
+
+\subsection{Fixed Mindset}
+
+The lecture contrasts this with:
+
+\begin{itemize}
+\item ``Failure is the limit of my abilities''
+\item ``My abilities are unchanging''
+\item ``I don’t like to be challenged''
+\item ``My potential is predetermined''
+\item ``When I’m frustrated, I give up''
+\item ``I stick to what I know''
+\end{itemize}
+
+\subsection*{Step-by-Step Understanding}
+
+\begin{itemize}
+\item Failure is seen as permanent.
+\item Learning is considered limited.
+\item Difficult topics are avoided.
+\item Effort is reduced.
+\end{itemize}
+
+\subsection{Conclusion from Comparison}
+
+\begin{itemize}
+\item Probability needs practice and patience.
+\item A growth mindset helps understanding.
+\item A fixed mindset blocks learning.
+\item Therefore, students should follow a growth mindset in CSE400.
+\end{itemize}
+
+\section{Why Should We Learn CSE400? (Pages 6--8)}
+
+The outline introduces:
+
+\begin{itemize}
+\item ``Why should we learn CSE400?''
+\item Example: Daily life conversations
+\item Engineering Applications
+\end{itemize}
+
+\subsection{Daily Life Conversations}
+
+The lecture connects probability with daily thinking.
+
+\subsubsection*{Classroom-Based Understanding}
+
+In daily life, people say:
+
+\begin{itemize}
+\item ``Maybe it will rain.''
+\item ``There is a chance.''
+\item ``Probably it will happen.''
+\end{itemize}
+
+\subsubsection*{Step-by-Step Explanation}
+
+\begin{itemize}
+\item Many situations are uncertain.
+\item People estimate chances informally.
+\item They use words like ``maybe'' and ``probably''.
+\item These are informal probabilities.
+\item CSE400 teaches how to represent these ideas mathematically.
+\end{itemize}
+
+So:
+
+\begin{center}
+Informal thinking $\rightarrow$ Formal probability models.
+\end{center}
+
+\subsection{Engineering Applications}
+
+The lecture lists three main areas.
+
+\subsubsection{(a) Speech Recognition}
+
+\begin{itemize}
+\item Speech signals contain noise.
+\item Words may not be clear.
+\item System receives uncertain input.
+\item Multiple interpretations are possible.
+\item Probability helps choose the most likely word.
+\end{itemize}
+
+\subsubsection{(b) System Radar System}
+
+\begin{itemize}
+\item Radar sends signals.
+\item Signals return with noise.
+\item Objects may or may not be present.
+\item Detection is uncertain.
+\item Probability decides whether a target exists.
+\end{itemize}
+
+\subsubsection{(c) Communication Network}
+
+\begin{itemize}
+\item Data is transmitted in packets.
+\item Errors and delays occur.
+\item Transmission is uncertain.
+\item Probability analyzes performance.
+\item Systems are optimized using probabilistic models.
+\end{itemize}
+
+\subsection{Conclusion}
+
+\begin{itemize}
+\item Engineering systems face randomness.
+\item Exact prediction is not possible.
+\item Probability provides tools to handle uncertainty.
+\item Therefore, CSE400 is essential.
+\end{itemize}
+
+\section{Project Component in CSE400 (Pages 24--26)}
+
+\subsection{Project Weightage}
+
+The lecture states:
+
+\begin{center}
+CSE400 -- Project Kickoff (30\%)
+\end{center}
+
+So:
+
+\begin{itemize}
+\item Project contributes 30\% to evaluation.
+\end{itemize}
+
+\subsection{Team Formation (Page 25)}
+
+Deadline: 17th January 2026, Saturday -- EOD
+
+Meaning:
+
+\begin{itemize}
+\item Teams must be formed before deadline.
+\item Submission is time-bound.
+\item Planning must start early.
+\end{itemize}
+
+\subsection{Project Execution Guidelines (Page 26)}
+
+Main Components:
+
+\begin{itemize}
+\item Concept Evolution Maps
+\item Scribe: Process \& Decision-Making
+\item Multimodal Artifacts
+\item Question-Driven Artifacts
+\item Collaboration \& Team Dynamics
+\item Deliverables
+\item Project Viva
+\end{itemize}
+
+\subsection*{Step-by-Step Meaning}
+
+\begin{itemize}
+\item Work is divided into stages.
+\item Each stage has specific outputs.
+\item Students must document thinking.
+\item Evaluation is continuous.
+\item Final understanding is tested in viva.
+\end{itemize}
+
+\section{Project Execution: Milestones (Page 27)}
+
+\subsection{M1: Kickstart}
+
+Includes:
+
+\begin{itemize}
+\item Team Formation
+\item Area Identification
+\item Background
+\item Motivation
+\item Problem Formulation
+\end{itemize}
+
+\subsection{M2: Mathematical Modeling}
+
+Includes:
+
+\begin{itemize}
+\item Random Variables (RV)
+\item PMF / PDF
+\item CDF
+\item Multivariate RV
+\item Joint PMF / PDF / CDF
+\end{itemize}
+
+\subsection{M3: Coding}
+
+Includes:
+
+\begin{itemize}
+\item Simulation
+\item Computation
+\end{itemize}
+
+\subsection{M4: Inference}
+
+Includes:
+
+\begin{itemize}
+\item Choose randomized algorithm
+\item Understand it
+\item Code it
+\end{itemize}
+
+\subsection{M5: Randomized Algorithms}
+
+Includes:
+
+\begin{itemize}
+\item Apply algorithm
+\item Compare with deterministic
+\item Analyze results
+\end{itemize}
+
+\subsection{M6: Derivation and Analysis}
+
+Includes:
+
+\begin{itemize}
+\item Derive bounds
+\item Analysis
+\item Final submission
+\end{itemize}
+
+\section{Submission \#1: Concept Evolution Maps (Pages 28--29)}
+
+Tools:
+
+\begin{itemize}
+\item miro.com
+\item diagrams.net
+\end{itemize}
+
+Purpose:
+
+\begin{itemize}
+\item Show concept connections.
+\item Organize ideas visually.
+\item Explain flow of learning.
+\end{itemize}
+
+\section{Submission \#2: Scribe -- Learning Reflection Logs (Page 30)}
+
+Types:
+
+\begin{itemize}
+\item Lecture Scribes
+\item Project Scribes
+\end{itemize}
+
+Must include:
+
+\begin{itemize}
+\item Decision logs
+\item Constraints
+\item Alternatives
+\item Evidence
+\item Trade-offs
+\end{itemize}
+
+\section{Submission \#3: Multimodal Artifacts (Page 31)}
+
+Includes:
+
+\begin{itemize}
+\item Video / Audio / Visual
+\item Duration: 10--15 minutes
+\item Use PPT/Slides
+\item Think-Aloud Videos
+\item One-Minute Insights
+\item Project Demo
+\end{itemize}
+
+\section{Classroom Interaction and Dialogue}
+
+\subsection{Active Learning (Pages 13--15)}
+
+\begin{itemize}
+\item Active learning
+\item Class discussion
+\item Campuswire
+\end{itemize}
+
+\subsection{Q\&A Session (Page 87)}
+
+\begin{quote}
+``Q \& A Session: Open Discussions''
+\end{quote}
+
+\section{Integrated Understanding of CSE400}
+
+\subsection{Learning Philosophy}
+
+\begin{itemize}
+\item Growth mindset
+\item Reflection
+\item Discussion
+\item Practice
+\end{itemize}
+
+\subsection{Technical Focus}
+
+\begin{itemize}
+\item Random variables
+\item Distributions
+\item Simulation
+\item Randomized algorithms
+\item Analysis
+\end{itemize}
+
+\subsection{Practical Focus}
+
+\begin{itemize}
+\item Projects
+\item Documentation
+\item Videos
+\item Presentations
+\end{itemize}
+
+\subsection{Dialogue-Based Learning}
+
+Learning happens through:
+
+\begin{itemize}
+\item Daily examples
+\item Classroom discussion
+\item Q\&A sessions
+\item Reflection logs
+\end{itemize}
+
+\section*{Final Summary for Exam Revision}
+
+\begin{itemize}
+\item CSE400 promotes a growth mindset.
+\item Probability formalizes uncertainty.
+\item Daily life uses informal probability.
+\item Engineering systems depend on probabilistic models.
+\item Project weightage is 30\%.
+\item Work is divided into M1--M6.
+\item Mathematical modeling is central.
+\item Scribes explain reasoning.
+\item Videos show thinking.
+\item Open discussions support learning.
+\end{itemize}
+
+\end{document}
+
