@@ -1,0 +1,1 @@
+This folder contains codes for PDF and CDF of all random variables.
