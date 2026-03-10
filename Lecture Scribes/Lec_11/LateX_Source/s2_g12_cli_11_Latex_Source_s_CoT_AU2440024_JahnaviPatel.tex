@@ -1,0 +1,369 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage{titlesec}
+
+\geometry{margin=1in}
+
+\title{CSE400 -- Fundamentals of Probability in Computing\\
+Lecture 11: Transformation of Random Variables}
+\date{}
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Outline}
+
+The lecture covers the following topics:
+
+\begin{enumerate}
+\item \textbf{Transformation of Random Variables} \\
+Learning transformation techniques for random variables.
+
+\item \textbf{Function of Two Random Variables} \\
+Joint transformations and derived distributions.
+
+\item \textbf{Illustrative Example} \\
+Detailed derivation for the case
+\[
+Z = X + Y
+\]
+\end{enumerate}
+
+These topics together explain how the distribution of a \textbf{new random variable} can be derived from existing random variables.
+
+\section{Transformation of Random Variables}
+
+\subsection*{Definition}
+
+A \textbf{transformation of a random variable} occurs when a new random variable is defined as a function of another random variable.
+
+Let $X$ be a random variable and let
+
+\[
+Y = g(X)
+\]
+
+Then $Y$ is called a \textbf{transformed random variable}.
+
+The main objective is to determine the \textbf{probability distribution of $Y$} given the probability distribution of $X$.
+
+\section{Distribution of a Transformed Variable}
+
+The most common method for finding the distribution of a transformed variable is the \textbf{CDF method}.
+
+\subsection*{Step 1: Start with the CDF Definition}
+
+The cumulative distribution function of $Y$ is
+
+\[
+F_Y(y) = P(Y \leq y)
+\]
+
+\subsection*{Step 2: Substitute the Transformation}
+
+If
+
+\[
+Y = g(X)
+\]
+
+then
+
+\[
+F_Y(y) = P(g(X) \leq y)
+\]
+
+\subsection*{Step 3: Express Probability in Terms of $X$}
+
+The evaluation of this probability depends on whether the function $g(x)$ is:
+
+\begin{itemize}
+\item \textbf{Monotonic increasing}, or
+\item \textbf{Monotonic decreasing}
+\end{itemize}
+
+\section{Case 1: Monotonic Increasing Transformation}
+
+Assume that the function $g(x)$ is \textbf{strictly increasing}.
+
+Then
+
+\[
+g(X) \le y
+\]
+
+implies
+
+\[
+X \le g^{-1}(y)
+\]
+
+Thus,
+
+\[
+F_Y(y) = P(X \le g^{-1}(y))
+\]
+
+\[
+F_Y(y) = F_X(g^{-1}(y))
+\]
+
+\subsection*{Derivation of the PDF}
+
+If the random variable $X$ has probability density function $f_X(x)$, then the PDF of $Y$ is obtained by differentiation.
+
+\[
+f_Y(y) = \frac{d}{dy}F_Y(y)
+\]
+
+Substituting the expression of $F_Y(y)$:
+
+\[
+f_Y(y) = \frac{d}{dy}F_X(g^{-1}(y))
+\]
+
+Using the \textbf{chain rule}
+
+\[
+f_Y(y) =
+f_X(g^{-1}(y))
+\cdot
+\frac{d}{dy}g^{-1}(y)
+\]
+
+Thus the transformation formula becomes
+
+\[
+f_Y(y) =
+f_X(g^{-1}(y))
+\left|
+\frac{d}{dy}g^{-1}(y)
+\right|
+\]
+
+\section{Case 2: Monotonic Decreasing Transformation}
+
+If $g(x)$ is \textbf{strictly decreasing}, then
+
+\[
+g(X) \le y
+\]
+
+implies
+
+\[
+X \ge g^{-1}(y)
+\]
+
+Therefore
+
+\[
+F_Y(y) = P(X \ge g^{-1}(y))
+\]
+
+\[
+F_Y(y) = 1 - F_X(g^{-1}(y))
+\]
+
+The probability density function can again be obtained by differentiating this CDF.
+
+\section{Function of Two Random Variables}
+
+In many situations a new random variable is defined as a \textbf{function of two random variables}.
+
+Let
+
+\[
+Z = h(X,Y)
+\]
+
+To determine the distribution of $Z$, we require the \textbf{joint probability distribution} of $X$ and $Y$.
+
+\subsection*{Joint Probability Density Function}
+
+If $X$ and $Y$ are continuous random variables, they may have a joint PDF
+
+\[
+f_{X,Y}(x,y)
+\]
+
+This function describes the probability behavior of the pair $(X,Y)$.
+
+\subsection*{Independence Assumption}
+
+If $X$ and $Y$ are \textbf{independent}, then their joint PDF is
+
+\[
+f_{X,Y}(x,y) = f_X(x)f_Y(y)
+\]
+
+This property simplifies the derivation of distributions for functions such as
+
+\begin{itemize}
+\item $Z = X + Y$
+\item $Z = X - Y$
+\item $Z = XY$
+\end{itemize}
+
+\section{Illustrative Example}
+
+\subsection*{Problem Statement}
+
+Find the distribution of
+
+\[
+Z = X + Y
+\]
+
+where
+
+\begin{itemize}
+\item $X$ and $Y$ are \textbf{independent random variables}
+\item Both follow \textbf{exponential distributions}
+\end{itemize}
+
+\[
+X \sim Exp(\lambda)
+\]
+
+\[
+Y \sim Exp(\lambda)
+\]
+
+\subsection*{Step 1: Write the PDFs}
+
+For an exponential random variable
+
+\[
+f_X(x) = \lambda e^{-\lambda x}, \quad x \ge 0
+\]
+
+\[
+f_Y(y) = \lambda e^{-\lambda y}, \quad y \ge 0
+\]
+
+\subsection*{Step 2: Apply the Convolution Formula}
+
+For independent variables
+
+\[
+Z = X + Y
+\]
+
+the probability density function is
+
+\[
+f_Z(z) =
+\int_{-\infty}^{\infty}
+f_X(x)f_Y(z-x)\,dx
+\]
+
+\subsection*{Step 3: Determine the Limits of Integration}
+
+Because exponential variables are defined only for
+
+\[
+x \ge 0
+\]
+
+and
+
+\[
+y = z-x \ge 0
+\]
+
+we obtain
+
+\[
+0 \le x \le z
+\]
+
+Therefore
+
+\[
+f_Z(z) =
+\int_0^z
+f_X(x)f_Y(z-x)\,dx
+\]
+
+\subsection*{Step 4: Substitute the PDFs}
+
+\[
+f_Z(z) =
+\int_0^z
+(\lambda e^{-\lambda x})
+(\lambda e^{-\lambda(z-x)})
+dx
+\]
+
+\subsection*{Step 5: Simplify the Expression}
+
+\[
+f_Z(z) =
+\lambda^2 e^{-\lambda z}
+\int_0^z dx
+\]
+
+\subsection*{Step 6: Evaluate the Integral}
+
+\[
+\int_0^z dx = z
+\]
+
+Thus
+
+\[
+f_Z(z) =
+\lambda^2 z e^{-\lambda z}
+\]
+
+\subsection*{Final Probability Density Function}
+
+\[
+f_Z(z)=
+\begin{cases}
+\lambda^2 z e^{-\lambda z}, & z \ge 0 \\
+0, & \text{otherwise}
+\end{cases}
+\]
+
+\subsection*{Interpretation}
+
+The sum of two independent exponential random variables follows a \textbf{Gamma (Erlang) distribution} with:
+
+\begin{itemize}
+\item shape parameter $k = 2$
+\item rate parameter $\lambda$
+\end{itemize}
+
+\section*{Key Formulas from Lecture 11}
+
+\subsection*{Transformation Formula}
+
+\[
+f_Y(y) =
+f_X(g^{-1}(y))
+\left|
+\frac{d}{dy} g^{-1}(y)
+\right|
+\]
+
+\subsection*{Convolution Formula}
+
+\[
+f_Z(z) =
+\int_{-\infty}^{\infty}
+f_X(x)f_Y(z-x)dx
+\]
+
+For non-negative variables:
+
+\[
+f_Z(z) =
+\int_0^z
+f_X(x)f_Y(z-x)dx
+\]
+
+\end{document}

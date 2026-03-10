@@ -1,0 +1,119 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{geometry}
+\usepackage{enumitem}
+\geometry{margin=1in}
+
+\begin{document}
+
+\section*{Lecture Scribe --- Transformation of Random Variables}
+\textbf{Course:} CSE400 – Fundamentals of Probability in Computing \\
+\textbf{Lecture:} 11 – Transformation of Random Variables \\
+\textbf{Source:} Lecture Slides by Dhaval Patel, PhD
+
+\subsection*{1. Learning Objectives (From Outline Slide)}
+The lecture covers:
+\begin{enumerate}[noitemsep]
+    \item Transformation of random variables.
+    \item Function of two random variables.
+    \item Illustrative example: derivation for the case $Z=X+Y$.
+\end{enumerate}
+The key objective stated in the slides is: How to find the PDF of a new transformed random variable.
+
+\subsection*{2. Definitions and Notation}
+\textbf{Random Variables and Transformations} \\
+Let $X$ be a random variable with known probability density function (PDF) $f_X(x)$. A transformed random variable is defined as:
+\begin{equation}
+    Y = g(X)
+\end{equation}
+The cumulative distribution function (CDF) of $Y$ is:
+\begin{equation}
+    F_Y(y) = P(Y \leq y)
+\end{equation}
+If $X$ has CDF $F_X(x)$, then transformation proceeds through the CDF relation shown in the slides.
+
+\textbf{Function of Two Random Variables} \\
+Given two random variables $X$ and $Y$, a new variable may be defined as:
+\begin{equation}
+    Z = g(X, Y)
+\end{equation}
+Example considered in lecture: $Z = X + Y$.
+
+\subsection*{3. Assumptions and Conditions}
+From the slides:
+\begin{enumerate}
+    \item The PDF of the original random variable is known a priori.
+    \item The function $Y = g(X)$ is considered under:
+    \begin{itemize}
+        \item Monotonically increasing case.
+        \item Monotonically decreasing case.
+    \end{itemize}
+    \item For the two-variable example: $X$ and $Y$ may be independent (as stated in problem statements).
+    \item Limits of transformation must be changed according to the transformation.
+\end{enumerate}
+
+\subsection*{4. Transformation of One Random Variable}
+\textbf{Problem Setup} \\
+Given: $Y = g(X)$. Goal: Find $f_Y(y)$.
+
+\textbf{Step 1 --- Express CDF of Transformed Variable} \\
+From the slide derivation:
+\begin{equation}
+    F_Y(y) = P(Y \leq y) = P(g(X) \leq y)
+\end{equation}
+For the monotonic increasing case:
+\begin{equation}
+    F_Y(y) = P(X \leq g^{-1}(y)) = F_X(g^{-1}(y))
+\end{equation}
+
+\textbf{Step 2 --- Differentiate to Obtain PDF} \\
+Differentiate with respect to $y$:
+\begin{equation}
+    f_Y(y) = \frac{d}{dy} F_X(g^{-1}(y)) = f_X(g^{-1}(y)) \frac{dg^{-1}(y)}{dy}
+\end{equation}
+Equivalently: $f_Y(y) = f_X(x) \left| \frac{dx}{dy} \right|$ evaluated at $x = g^{-1}(y)$.
+
+\subsection*{5. Worked Example --- Transformation of One RV}
+\textbf{Given:} $X \sim \text{Uniform}(-1, 1)$, so $f_X(x) = \frac{1}{2}$ for $-1 < x < 1$. \\
+\textbf{Transformation:} $Y = \sin(\frac{\pi}{2}X)$.
+
+\textbf{Step 1 --- Inverse Transformation:} $x = \frac{2}{\pi} \sin^{-1}(y)$. \\
+\textbf{Step 2 --- Compute Derivative:} $\frac{dx}{dy} = \frac{2}{\pi} \frac{1}{\sqrt{1-y^2}}$. \\
+\textbf{Step 3 --- Apply Formula:}
+\begin{equation}
+    f_Y(y) = \frac{1}{2} \cdot \frac{2}{\pi \sqrt{1-y^2}} = \frac{1}{\pi \sqrt{1-y^2}} \quad \text{for } -1 < y < 1.
+\end{equation}
+
+\subsection*{6. Function of Two Random Variables}
+\textbf{Problem Statement:} Let $Z = X + Y$. Find the PDF of $Z$. \\
+The slides specify:
+\begin{enumerate}
+    \item Find $F_Z(z)$.
+    \item Case when $X$ and $Y$ are independent.
+    \item Example cases include: $X, Y \sim N(0, 1)$ or exponential distributions with parameter $\lambda$.
+\end{enumerate}
+
+\subsection*{7. Derivation for $Z = X + Y$}
+\textbf{Step 1 --- Start from Definition:} $F_Z(z) = P(X + Y \leq z)$. \\
+\textbf{Step 2 --- Express Using Joint PDF:}
+\begin{equation}
+    F_Z(z) = \iint_{x+y \leq z} f_{X,Y}(x, y) \, dx \, dy
+\end{equation}
+\textbf{Step 3 --- Integration Representation:}
+\begin{equation}
+    \int \left( \int f_{X,Y}(x, y) \, dx \right) dy \quad \text{or} \quad \int \left( \int f_{X,Y}(x, y) \, dy \right) dx
+\end{equation}
+\textbf{Step 4 --- Obtain PDF:} $f_Z(z) = \frac{d}{dz} F_Z(z)$.
+
+\subsection*{8. Summary of Results (From Slides)}
+\begin{enumerate}
+    \item \textbf{Transformation method:} Use CDF $\rightarrow$ Apply inverse transformation $\rightarrow$ Differentiate to obtain PDF.
+    \item \textbf{Final transformation formula:} $f_Y(y) = f_X(g^{-1}(y)) \left| \frac{dx}{dy} \right|$.
+    \item \textbf{For two random variables:} Express CDF using joint distribution, integrate over the region defined by transformation, and differentiate to obtain PDF.
+\end{enumerate}
+
+\vfill
+\noindent \textbf{End of Lecture Scribe --- Prepared strictly from Lecture Slides for exam revision.}
+
+\end{document}
