@@ -1,0 +1,426 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+
+\begin{center}
+{\LARGE CSE400 -- Fundamentals of Probability in Computing}
+
+\vspace{0.5cm}
+
+{\Large Lecture 11: Transformation of Random Variables}
+
+\vspace{0.5cm}
+
+{\large Lecture Scribe for Exam Revision}
+\end{center}
+
+\vspace{1cm}
+
+\section*{Transformation of Random Variables}
+
+\subsection*{Lecture Objective}
+
+The lecture focuses on three connected goals:
+
+\begin{itemize}
+\item \textbf{Transformation of Random Variables}
+
+Learn techniques to determine the distribution of a new random variable obtained from another.
+
+\item \textbf{Function of Two Random Variables}
+
+Study transformations when the new variable depends on two random variables.
+
+\item \textbf{Illustrative Example}
+
+Work through the case
+
+\[
+Z = X + Y
+\]
+\end{itemize}
+
+These topics form the logical progression of the lecture:
+
+single variable transformation $\rightarrow$ two variable transformation $\rightarrow$ example derivation.
+
+\section*{1. Transformation of a Random Variable}
+
+\subsection*{Basic Setup}
+
+We start with a known random variable:
+
+\[
+X \sim f_X(x)
+\]
+
+Assumption:
+
+The PDF of $X$ is known a priori.
+
+We define a new random variable
+
+\[
+Y = g(X)
+\]
+
+Goal:
+
+Find the PDF of $Y$:
+
+\[
+f_Y(y)
+\]
+
+This means we must convert the probability description of $X$ into the probability description of $Y$.
+
+\subsection*{Case 1: Monotonically Increasing Transformation}
+
+Assume:
+
+\[
+Y = g(X)
+\]
+
+and $g(x)$ is monotonically increasing.
+
+This assumption is important because it guarantees:
+
+\begin{itemize}
+\item the inverse function exists
+\item each $y$ corresponds to exactly one $x$
+\end{itemize}
+
+Thus
+
+\[
+x = g^{-1}(y)
+\]
+
+\subsection*{Step 1 — Express the CDF of $Y$}
+
+Start from the definition of CDF:
+
+\[
+F_Y(y) = P(Y \le y)
+\]
+
+Substitute $Y = g(X)$:
+
+\[
+F_Y(y) = P(g(X) \le y)
+\]
+
+Since $g$ is increasing, the inequality direction does not change, therefore
+
+\[
+P(g(X) \le y) = P(X \le g^{-1}(y))
+\]
+
+Thus
+
+\[
+F_Y(y) = F_X(g^{-1}(y))
+\]
+
+This step converts the probability into a form involving the known distribution of $X$.
+
+\subsection*{Step 2 — Differentiate to obtain the PDF}
+
+The PDF is the derivative of the CDF:
+
+\[
+f_Y(y) = \frac{d}{dy}F_Y(y)
+\]
+
+Substitute the CDF expression:
+
+\[
+f_Y(y) = \frac{d}{dy}[F_X(g^{-1}(y))]
+\]
+
+Apply the chain rule:
+
+\[
+f_Y(y) = f_X(g^{-1}(y)) \cdot \frac{d}{dy}g^{-1}(y)
+\]
+
+Since
+
+\[
+x = g^{-1}(y)
+\]
+
+we can write
+
+\[
+f_Y(y) = f_X(x)\frac{dx}{dy}
+\]
+
+evaluated at
+
+\[
+x = g^{-1}(y)
+\]
+
+\subsection*{Case 2: Monotonically Decreasing Transformation}
+
+Now assume $g(x)$ is decreasing.
+
+The key difference is the inequality direction flips.
+
+\subsection*{Step 1 — CDF expression}
+
+Start again from
+
+\[
+F_Y(y) = P(Y \le y)
+\]
+
+Substitute transformation:
+
+\[
+F_Y(y) = P(g(X) \le y)
+\]
+
+Because the function is decreasing:
+
+\[
+g(X) \le y \Rightarrow X \ge g^{-1}(y)
+\]
+
+Thus
+
+\[
+F_Y(y) = P(X \ge g^{-1}(y))
+\]
+
+Using the complement rule:
+
+\[
+F_Y(y) = 1 - F_X(g^{-1}(y))
+\]
+
+\subsection*{Step 2 — Differentiate}
+
+Differentiate the CDF:
+
+\[
+f_Y(y) = \frac{d}{dy}[1 - F_X(g^{-1}(y))]
+\]
+
+\[
+f_Y(y) = -f_X(g^{-1}(y))\frac{d}{dy}g^{-1}(y)
+\]
+
+The negative sign appears because the transformation is decreasing.
+
+\subsection*{Final General Formula}
+
+To combine both cases, the PDF is written using an absolute value:
+
+\[
+f_Y(y) = f_X(x)\left|\frac{dx}{dy}\right|
+\]
+
+evaluated at
+
+\[
+x = g^{-1}(y)
+\]
+
+This formula ensures the PDF is always positive.
+
+\section*{Example: Transformation of a Uniform Random Variable}
+
+Given:
+
+\[
+X \sim U(-1,1)
+\]
+
+So the PDF is
+
+\[
+f_X(x) =
+\begin{cases}
+\frac{1}{2}, & -1 < x < 1 \\
+0, & \text{otherwise}
+\end{cases}
+\]
+
+Define the transformation:
+
+\[
+Y = g(X) = \sin\left(\frac{\pi X}{2}\right)
+\]
+
+Goal:
+
+Find
+
+\[
+f_Y(y)
+\]
+
+\subsection*{Step 1 — Find the inverse transformation}
+
+\[
+y = \sin\left(\frac{\pi x}{2}\right)
+\]
+
+Solve for $x$:
+
+\[
+x = \frac{2}{\pi}\sin^{-1}(y)
+\]
+
+\subsection*{Step 2 — Compute derivative}
+
+\[
+\frac{dx}{dy} = \frac{2}{\pi}\frac{1}{\sqrt{1-y^2}}
+\]
+
+\subsection*{Step 3 — Apply transformation formula}
+
+\[
+f_Y(y) = f_X(x)\left|\frac{dx}{dy}\right|
+\]
+
+Substitute $f_X(x) = \frac{1}{2}$:
+
+\[
+f_Y(y) = \frac{1}{2}\times \frac{2}{\pi}\frac{1}{\sqrt{1-y^2}}
+\]
+
+Simplify:
+
+\[
+f_Y(y) = \frac{1}{\pi\sqrt{1-y^2}}
+\]
+
+\subsection*{Step 4 — Determine support}
+
+From the transformation:
+
+if $x = -1$
+
+\[
+y = \sin(-\pi/2) = -1
+\]
+
+if $x = 1$
+
+\[
+y = \sin(\pi/2) = 1
+\]
+
+Thus
+
+\[
+-1 < y < 1
+\]
+
+Final PDF:
+
+\[
+f_Y(y) =
+\begin{cases}
+\frac{1}{\pi\sqrt{1-y^2}}, & -1 < y < 1 \\
+0, & \text{otherwise}
+\end{cases}
+\]
+
+\section*{Function of Two Random Variables}
+
+The lecture next considers the transformation
+
+\[
+Z = X + Y
+\]
+
+Goal:
+
+Find the PDF
+
+\[
+f_Z(z)
+\]
+
+\section*{Deriving the Distribution of $Z = X + Y$}
+
+Start with the CDF definition:
+
+\[
+F_Z(z) = P(Z \le z)
+\]
+
+Substitute the definition of $Z$:
+
+\[
+F_Z(z) = P(X + Y \le z)
+\]
+
+This probability corresponds to a region in the $x$-$y$ plane.
+
+To compute it we integrate the joint PDF over that region.
+
+\subsection*{Horizontal strip integration}
+
+\[
+F_Z(z)=\int_{y=-\infty}^{\infty}\int_{x=-\infty}^{z-y}f_{XY}(x,y)\,dx\,dy
+\]
+
+inner limit: $x \le z-y$ because $x+y \le z$
+
+\subsection*{Vertical strip integration}
+
+\[
+F_Z(z)=\int_{x=-\infty}^{\infty}\int_{y=-\infty}^{z-x}f_{XY}(x,y)\,dy\,dx
+\]
+
+Both integrals describe the same probability region.
+
+\section*{Special Cases Mentioned}
+
+Find $f_Z(z)$ in general.
+
+If $X$ and $Y$ are independent.
+
+If
+
+\[
+X \sim N(0,1), \quad Y \sim N(0,1)
+\]
+
+then
+
+\[
+Z = X + Y
+\]
+
+and it can be shown
+
+\[
+Z \sim N(0,2)
+\]
+
+If $X$ and $Y$ are exponential random variables with parameter $\lambda$, compute $f_Z(z)$.
+
+\section*{Key Logical Flow of the Lecture}
+
+\begin{itemize}
+\item Start with known distribution of $X$.
+\item Define a new random variable $Y = g(X)$.
+\item Express CDF of $Y$ using probabilities of $X$.
+\item Differentiate to obtain the PDF of $Y$.
+\item Handle increasing vs decreasing functions.
+\item Apply the formula to a worked example.
+\item Extend the concept to two random variables.
+\item Use joint PDF integration to compute distributions like $Z = X + Y$.
+\end{itemize}
+
+\end{document}
