@@ -1,0 +1,386 @@
+\documentclass[12pt]{article}
+
+% Packages
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{amsmath, amssymb}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{enumitem}
+
+% Formatting
+\onehalfspacing
+\setlist[itemize]{noitemsep}
+\setlist[enumerate]{noitemsep}
+
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.5em}{}
+
+\begin{document}
+
+\begin{center}
+{\Large \textbf{CSE400 -- Fundamentals of Probability in Computing}}\\[0.2cm]
+{\large Lecture 11: Transformation of Random Variables}\\[0.3cm]
+
+\textbf{Instructor:} Dhaval Patel, PhD\\
+\textbf{Date:} February 10, 2026
+\end{center}
+
+\hrule
+\vspace{0.4cm}
+
+\section{Transformation of Random Variables}
+
+\subsection{Objective}
+
+The goal of transformation techniques is to determine the distribution of a new random variable obtained by applying a function to an existing random variable.
+
+Let
+
+\[
+Y = g(X)
+\]
+
+where
+
+\begin{itemize}
+\item $X$ is a random variable with known distribution
+\item $g(\cdot)$ is a deterministic function
+\item $Y$ is the transformed random variable
+\end{itemize}
+
+The main problem is:
+
+\textbf{Given the distribution of $X$, find the distribution of $Y$.}
+
+\subsection{CDF Method for Transformation}
+
+The most general technique for transformation is the \textbf{CDF method}.
+
+\subsubsection*{Step 1 --- Define the CDF of the new variable}
+
+\[
+F_Y(y) = P(Y \le y)
+\]
+
+Since $Y = g(X)$,
+
+\[
+F_Y(y) = P(g(X) \le y)
+\]
+
+Thus, the problem reduces to evaluating this probability in terms of $X$.
+
+\subsection{Case 1 --- Monotonic Increasing Transformation}
+
+Assume $g(x)$ is \textbf{monotonically increasing}, meaning
+
+\[
+g(x_1) < g(x_2) \quad \text{if} \quad x_1 < x_2
+\]
+
+\subsubsection*{Step 1: Express the event}
+
+\[
+F_Y(y) = P(g(X) \le y)
+\]
+
+Because $g$ is increasing,
+
+\[
+g(X) \le y \iff X \le g^{-1}(y)
+\]
+
+Thus,
+
+\[
+F_Y(y) = P(X \le g^{-1}(y))
+\]
+
+\subsubsection*{Step 2: Use the CDF of $X$}
+
+\[
+F_Y(y) = F_X(g^{-1}(y))
+\]
+
+\subsubsection*{Step 3: Obtain the PDF}
+
+If $X$ has PDF $f_X(x)$,
+
+\[
+f_Y(y) = \frac{d}{dy}F_Y(y)
+\]
+
+Substituting,
+
+\[
+F_Y(y) = F_X(g^{-1}(y))
+\]
+
+Using the chain rule,
+
+\[
+f_Y(y) = f_X(g^{-1}(y)) 
+\left|\frac{d}{dy} g^{-1}(y)\right|
+\]
+
+\subsection{Case 2 --- Monotonic Decreasing Transformation}
+
+If $g(x)$ is \textbf{monotonically decreasing}, the inequality reverses.
+
+Start with
+
+\[
+F_Y(y) = P(Y \le y)
+\]
+
+Substitute $Y = g(X)$:
+
+\[
+F_Y(y) = P(g(X) \le y)
+\]
+
+Since $g$ is decreasing,
+
+\[
+g(X) \le y \iff X \ge g^{-1}(y)
+\]
+
+Thus
+
+\[
+F_Y(y) = P(X \ge g^{-1}(y))
+\]
+
+Using the CDF definition
+
+\[
+P(X \ge a) = 1 - F_X(a)
+\]
+
+Therefore
+
+\[
+F_Y(y) = 1 - F_X(g^{-1}(y))
+\]
+
+Differentiating,
+
+\[
+f_Y(y) = \frac{d}{dy}F_Y(y)
+\]
+
+which leads to
+
+\[
+f_Y(y) = f_X(g^{-1}(y))
+\left|\frac{d}{dy}g^{-1}(y)\right|
+\]
+
+The absolute value ensures the density remains non-negative.
+
+\section{Function of Two Random Variables}
+
+Consider transformations involving two random variables.
+
+\[
+Z = g(X,Y)
+\]
+
+where $X$ and $Y$ are random variables with joint distribution
+
+\[
+f_{X,Y}(x,y)
+\]
+
+The objective is to determine the distribution of the new variable $Z$.
+
+\subsection{Joint Distribution}
+
+If $X$ and $Y$ are continuous random variables, they have a joint probability density function $f_{X,Y}(x,y)$.
+
+The probability of a region $A$ is
+
+\[
+P((X,Y)\in A) =
+\int\int_A f_{X,Y}(x,y)\,dx\,dy
+\]
+
+\section{Illustrative Example}
+
+Consider
+
+\[
+Z = X + Y
+\]
+
+The goal is to determine the distribution of $Z$.
+
+\subsection{Step 1 --- Define the CDF}
+
+\[
+F_Z(z) = P(Z \le z)
+\]
+
+Substitute
+
+\[
+F_Z(z) = P(X + Y \le z)
+\]
+
+\subsection{Step 2 --- Express as a Region}
+
+The event $X+Y\le z$ defines a region in the $(x,y)$ plane.
+
+\[
+F_Z(z) =
+\int\int_{x+y \le z}
+f_{X,Y}(x,y)\,dx\,dy
+\]
+
+\subsection{Step 3 --- Evaluate the Integral}
+
+The region can be written as
+
+\[
+y \le z - x
+\]
+
+Thus
+
+\[
+F_Z(z)=
+\int_{-\infty}^{\infty}
+\int_{-\infty}^{z-x}
+f_{X,Y}(x,y)\,dy\,dx
+\]
+
+\subsection{Step 4 --- Obtain the PDF}
+
+Differentiate the CDF
+
+\[
+f_Z(z)=\frac{d}{dz}F_Z(z)
+\]
+
+When $X$ and $Y$ are independent, this leads to the \textbf{convolution formula}
+
+\[
+f_Z(z) =
+\int_{-\infty}^{\infty}
+f_X(x)f_Y(z-x)\,dx
+\]
+
+\subsection{Assumption: Independent Random Variables}
+
+If $X$ and $Y$ are independent,
+
+\[
+f_{X,Y}(x,y)=f_X(x)f_Y(y)
+\]
+
+Substituting this into the previous expression yields the convolution formula.
+
+\section{Example Scenario Mentioned in Slides}
+
+Let
+
+\[
+X \sim \text{Exponential}(\lambda)
+\]
+
+\[
+Y \sim \text{Exponential}(\lambda)
+\]
+
+Assume independence and define
+
+\[
+Z = X + Y
+\]
+
+Using convolution,
+
+\[
+f_Z(z) =
+\int_0^z f_X(x)f_Y(z-x)\,dx
+\]
+
+The exponential PDFs are
+
+\[
+f_X(x) = \lambda e^{-\lambda x}
+\]
+
+\[
+f_Y(y) = \lambda e^{-\lambda y}
+\]
+
+Substituting gives
+
+\[
+f_Z(z)=
+\int_0^z
+\lambda e^{-\lambda x}
+\lambda e^{-\lambda (z-x)}
+dx
+\]
+
+Evaluating this integral produces the resulting distribution for the sum.
+
+\section{Key Results for Exams}
+
+\subsection{Transformation of One Random Variable}
+
+\begin{enumerate}
+\item Define the CDF
+\[
+F_Y(y)=P(Y\le y)
+\]
+
+\item Substitute the transformation $Y=g(X)$
+
+\item Express the probability in terms of $X$
+
+\item Differentiate to obtain the PDF
+\end{enumerate}
+
+\subsection{Monotonic Transformation Formula}
+
+\[
+f_Y(y) =
+f_X(g^{-1}(y))
+\left|
+\frac{d}{dy}g^{-1}(y)
+\right|
+\]
+
+\subsection{Sum of Two Random Variables}
+
+For independent $X$ and $Y$,
+
+\[
+Z=X+Y
+\]
+
+\[
+f_Z(z)=
+\int_{-\infty}^{\infty}
+f_X(x)f_Y(z-x)\,dx
+\]
+
+This operation is known as \textbf{convolution}.
+
+\section{Conceptual Summary}
+
+This lecture introduced three fundamental ideas:
+
+\begin{itemize}
+\item Transformation of random variables using the CDF method
+\item Handling functions of two random variables using joint distributions
+\item Computing the distribution of the sum of two variables leading to the convolution formula
+\end{itemize}
+
+These techniques are essential for deriving distributions of new variables constructed from existing random variables.
+
+\end{document}

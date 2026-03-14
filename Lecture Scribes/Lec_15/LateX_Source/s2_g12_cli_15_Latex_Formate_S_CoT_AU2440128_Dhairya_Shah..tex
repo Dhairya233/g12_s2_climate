@@ -1,0 +1,102 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{geometry}
+\usepackage{enumitem}
+\geometry{margin=1in}
+
+\title{CSE 400: Fundamentals of Probability in Computing \\ Lecture 15 Scribe: Bernoulli and Binomial Distributions}
+\author{Dhairya Shah (AU2440128)}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Scribe --- Bernoulli and Binomial Distributions}
+\textbf{Course:} CSE 400 – Fundamentals of Probability in Computing \\
+\textbf{Lecture:} 15 – Bernoulli and Binomial Distributions \\
+\textbf{Source:} Lecture Slides by Dhaval Patel, PhD
+
+\subsection*{1. Introduction and Objectives}
+This lecture scribe is designed as authoritative reference material for exam preparation. The content focuses on the mathematical foundations of Bernoulli trials and the transition to Binomial and Poisson distributions as presented in the lecture materials.
+
+\subsection*{2. Bernoulli Process}
+\textbf{Definition and Notation} \\
+A Bernoulli trial is a random experiment with exactly two possible outcomes: "Success" (1) and "Failure" (0).
+Let $X$ be a Bernoulli random variable. The Probability Mass Function (PMF) is given by:
+\begin{equation}
+    P(X=x) = 
+    \begin{cases} 
+    p & \text{if } x=1 \\
+    1-p & \text{if } x=0 
+    \end{cases}
+\end{equation}
+where $p$ is the probability of success.
+
+\subsection*{3. The Binomial Distribution}
+\textbf{Assumptions and Conditions} \\
+A random variable $X$ follows a Binomial distribution $B(n, p)$ if:
+\begin{enumerate}
+    \item The experiment consists of $n$ independent trials.
+    \item Each trial is a Bernoulli trial with the same probability of success $p$.
+    \item We are interested in the total number of successes in $n$ trials.
+\end{enumerate}
+
+\textbf{Statement of PMF} \\
+The PMF of a Binomial random variable $X$ is defined as:
+\begin{equation}
+    P(X=k) = \binom{n}{k} p^k (1-p)^{n-k}, \quad k=0, 1, \dots, n
+\end{equation}
+
+\subsection*{4. Properties of Binomial Distribution}
+\textbf{Step-by-Step Derivation of Mean and Variance} \\
+From the lecture slides, the expected value $E[X]$ and variance $Var(X)$ are derived as follows:
+\begin{enumerate}
+    \item \textbf{Expectation ($E[X]$):} Since $X = X_1 + X_2 + \dots + X_n$ where each $X_i$ is a Bernoulli trial:
+    \begin{equation}
+        E[X] = \sum_{i=1}^n E[X_i] = \sum_{i=1}^n p = np
+    \end{equation}
+    \item \textbf{Variance ($Var(X)$):} Due to the independence of trials:
+    \begin{equation}
+        Var(X) = \sum_{i=1}^n Var(X_i) = \sum_{i=1}^n p(1-p) = np(1-p)
+    \end{equation}
+\end{enumerate}
+
+\subsection*{5. Poisson Approximation to Binomial}
+\textbf{Theorems and Results} \\
+When $n$ is large ($n \to \infty$) and $p$ is small ($p \to 0$) such that $np = \lambda$ remains constant, the Binomial distribution can be approximated by the Poisson distribution.
+
+\textbf{Proof Sketch:}
+\begin{equation}
+    \lim_{n \to \infty} \binom{n}{k} p^k (1-p)^{n-k} = \frac{e^{-\lambda} \lambda^k}{k!}
+\end{equation}
+
+\subsection*{6. Worked Example: Quality Control}
+\textbf{Problem:} A production line has a $2\%$ defect rate. In a sample of $100$ items, what is the probability of finding exactly $3$ defective items?
+
+\textbf{Step-by-Step Solution:}
+\begin{enumerate}
+    \item Identify parameters: $n=100$, $p=0.02$.
+    \item Apply Binomial PMF:
+    \begin{equation}
+        P(X=3) = \binom{100}{3} (0.02)^3 (0.98)^{97}
+    \end{equation}
+    \item \textbf{Alternative (Poisson Approximation):} Since $n$ is large and $p$ is small, $\lambda = np = 100 \times 0.02 = 2$.
+    \begin{equation}
+        P(X=3) \approx \frac{e^{-2} 2^3}{3!} = \frac{8 e^{-2}}{6} \approx 0.180
+    \end{equation}
+\end{enumerate}
+
+\subsection*{7. Summary of Key Formulas}
+\begin{itemize}
+    \item \textbf{Bernoulli Mean:} $p$
+    \item \textbf{Binomial Mean:} $np$
+    \item \textbf{Binomial Variance:} $np(1-p)$
+    \item \textbf{Poisson PMF:} $P(X=k) = \frac{e^{-\lambda} \lambda^k}{k!}$
+\end{itemize}
+
+\vfill
+\noindent \textbf{End of Lecture Scribe — Prepared strictly from Lecture Slides for exam revision.}
+
+\end{document}
