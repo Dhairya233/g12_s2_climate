@@ -1,0 +1,90 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+
+% Page Layout
+\geometry{a4paper, margin=1in}
+
+% Title Information
+\title{CSE 400: Fundamentals of Probability in Computing \\ \textbf{Lecture 19 Scribe: The Central Limit Theorem (CLT)}}
+\author{Dhairya Shah (AU2440128)}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Purpose}
+This scribe is intended as authoritative reference material for exam preparation. It reconstructs the logical flow of Lecture 19, focusing on the formulation, conditions, and applications of the Central Limit Theorem (CLT).
+
+\section{Definitions and Notation}
+Let $X_1, X_2, \dots, X_n$ be a sequence of $n$ independent and identically distributed (IID) random variables.
+
+\begin{itemize}
+    \item \textbf{Mean and Variance:} Each $X_i$ has a common finite mean $\mu$ and a finite variance $\sigma^2$.
+    \item \textbf{Sum of Random Variables:} $S_n = \sum_{i=1}^n X_i$.
+    \item \textbf{Sample Mean:} $\bar{X} = \frac{S_n}{n} = \frac{1}{n} \sum_{i=1}^n X_i$.
+    \item \textbf{Standardized Variable ($Z$):} 
+    \[ Z = \frac{S_n - E[S_n]}{\sqrt{Var(S_n)}} = \frac{S_n - n\mu}{\sigma\sqrt{n}} \]
+    Alternatively, in terms of the sample mean:
+    \[ Z = \frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \]
+\end{itemize}
+
+\section{The Central Limit Theorem (CLT)}
+\subsection{Mathematical Statement}
+The Central Limit Theorem states that as the sample size $n$ increases ($n \to \infty$), the distribution of the standardized variable $Z$ approaches the Standard Normal Distribution $N(0, 1)$, regardless of the original distribution of the $X_i$ variables.
+
+Mathematically, for any real number $z$:
+\[ \lim_{n \to \infty} P\left( \frac{S_n - n\mu}{\sigma\sqrt{n}} \le z \right) = \Phi(z) \]
+where $\Phi(z)$ is the Cumulative Distribution Function (CDF) of the standard normal distribution.
+
+\subsection{Assumptions and Conditions}
+For the CLT to reliably apply, the following conditions must be satisfied:
+\begin{enumerate}
+    \item \textbf{Independence:} The random variables must be independent of one another.
+    \item \textbf{Identical Distribution:} The variables must be drawn from the same underlying distribution.
+    \item \textbf{Finite Mean and Variance:} The underlying distribution must have a well-defined, finite mean $\mu$ and variance $\sigma^2$.
+    \item \textbf{Sample Size ($n$):} While the theorem is asymptotic, in practice, $n \ge 30$ is often considered sufficient for most distributions.
+\end{enumerate}
+
+\section{Worked Examples}
+\subsection{Example 1: Probability of a Sum}
+\textbf{Problem:} An elevator has a maximum capacity of 2800 lbs. Suppose the weights of 10 passengers are IID random variables with a mean $\mu = 170$ lbs and standard deviation $\sigma = 30$ lbs. Use the CLT to estimate the probability that the total weight exceeds the capacity.
+
+\textbf{Step-by-Step Reasoning:}
+\begin{enumerate}
+    \item \textbf{Identify Parameters:} $n = 10$, $\mu = 170$, $\sigma = 30$, $S_n = \sum X_i$.
+    \item \textbf{Calculate Parameters for $S_n$:}
+    \begin{itemize}
+        \item $E[S_n] = n\mu = 10 \times 170 = 1700$
+        \item $Var(S_n) = n\sigma^2 = 10 \times 30^2 = 9000$
+        \item $SD(S_n) = \sqrt{9000} \approx 94.87$
+    \end{itemize}
+    \item \textbf{Standardize the Target Value ($2800$):}
+    \[ Z = \frac{2800 - 1700}{94.87} \approx 11.59 \]
+    \item \textbf{Calculate Probability:} $P(S_n > 2800) = P(Z > 11.59) \approx 0$.
+    \item \textbf{Conclusion:} The probability that the total weight exceeds the capacity is negligible.
+\end{enumerate}
+
+\subsection{Example 2: Sample Mean Distribution}
+\textbf{Problem:} A fair six-sided die is rolled 50 times. Find the probability that the sample mean $\bar{X}$ is between 3 and 4.
+
+\textbf{Step-by-Step Reasoning:}
+\begin{enumerate}
+    \item \textbf{Underlying Distribution:} For a single die, $\mu = 3.5$ and $\sigma^2 = \frac{35}{12} \approx 2.917$.
+    \item \textbf{Sample Mean Parameters:} $\mu_{\bar{X}} = 3.5$, $\sigma_{\bar{X}} = \frac{\sigma}{\sqrt{n}} = \sqrt{\frac{2.917}{50}} \approx 0.2415$.
+    \item \textbf{Standardize Bounds:}
+    \begin{itemize}
+        \item $z_1 = \frac{3 - 3.5}{0.2415} \approx -2.07$
+        \item $z_2 = \frac{4 - 3.5}{0.2415} \approx 2.07$
+    \end{itemize}
+    \item \textbf{Normal Table Look-up:} $P(-2.07 < Z < 2.07) = \Phi(2.07) - \Phi(-2.07) \approx 0.9808 - 0.0192 = 0.9616$.
+\end{enumerate}
+
+\vfill
+\noindent \textbf{End of Lecture Scribe --- Prepared strictly from Lecture Slides for exam revision.}
+
+\end{document}
