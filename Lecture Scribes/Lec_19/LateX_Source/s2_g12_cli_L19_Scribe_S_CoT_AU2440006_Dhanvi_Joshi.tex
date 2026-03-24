@@ -1,0 +1,277 @@
+\documentclass[12pt]{article}
+
+% Packages
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{amsmath, amssymb}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+% Formatting
+\onehalfspacing
+\setlist[itemize]{noitemsep}
+\setlist[enumerate]{noitemsep}
+
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.5em}{}
+
+\begin{document}
+
+\begin{center}
+{\Large \textbf{CSE400 -- Fundamentals of Probability in Computing}}\\[0.2cm]
+{\large Lecture 19: N-Variate Joint PDF / PMF / CDF}\\[0.3cm]
+
+\textbf{Topic:} Joint Distribution of N Random Variables\\
+\end{center}
+
+\hrule
+\vspace{0.4cm}
+
+\section{Joint Distribution of N Random Variables}
+
+\subsection{Definition}
+
+Let $X_1, X_2, \dots, X_n$ be $n$ random variables defined on a common probability space.
+
+The joint cumulative distribution function (CDF) is defined as:
+
+\[
+F_{X_1,\dots,X_n}(x_1,\dots,x_n) =
+P(X_1 \le x_1, X_2 \le x_2, \dots, X_n \le x_n)
+\]
+
+\subsubsection*{Step-by-Step Reasoning}
+
+\begin{enumerate}
+\item Consider each random variable individually.
+\item Form the joint event:
+\[
+(X_1 \le x_1) \cap (X_2 \le x_2) \cap \cdots \cap (X_n \le x_n)
+\]
+\item Compute the probability of this intersection.
+\item This defines the joint CDF.
+\end{enumerate}
+
+\section{Example 1}
+
+\subsection{Reasoning Procedure}
+
+\begin{enumerate}
+\item Identify all random variables.
+\item Construct the joint outcome space.
+\item Assign PMF (discrete) or PDF (continuous).
+\item Verify normalization:
+\end{enumerate}
+
+\textbf{Discrete case:}
+\[
+\sum_{x_1} \cdots \sum_{x_n} p(x_1,\dots,x_n) = 1
+\]
+
+\textbf{Continuous case:}
+\[
+\int f(x_1,\dots,x_n)\, dx_1 \cdots dx_n = 1
+\]
+
+\section{Application: Large MIMO System}
+
+\subsection{Interpretation}
+
+Multiple antennas correspond to multiple random variables, forming an $n$-dimensional random vector.
+
+\subsection{Step-by-Step Reasoning}
+
+\begin{itemize}
+\item Let each antenna output be $X_i$.
+\item Form the vector $(X_1, X_2, \dots, X_n)$.
+\item Describe system behavior using joint distribution.
+\item Capture dependencies among variables.
+\end{itemize}
+
+\section{Joint PMF, CDF, PDF}
+
+\subsection{Joint PMF (Discrete Case)}
+
+\[
+p(x_1,\dots,x_n) =
+P(X_1 = x_1, \dots, X_n = x_n)
+\]
+
+\subsubsection*{Reasoning}
+
+\begin{itemize}
+\item Each tuple represents an outcome.
+\item Assign probability to each tuple.
+\item Ensure normalization:
+\end{itemize}
+
+\[
+\sum_{x_1} \cdots \sum_{x_n} p(x_1,\dots,x_n) = 1
+\]
+
+\subsection{Joint CDF}
+
+\[
+F(x_1,\dots,x_n) =
+P(X_1 \le x_1, \dots, X_n \le x_n)
+\]
+
+\subsubsection*{Reasoning}
+
+\begin{itemize}
+\item Convert point probabilities to cumulative form.
+\item Evaluate joint inequalities.
+\item Function is non-decreasing in each argument.
+\end{itemize}
+
+\subsection{Joint PDF (Continuous Case)}
+
+\[
+f(x_1,\dots,x_n) =
+\frac{\partial^n}{\partial x_1 \cdots \partial x_n}
+F(x_1,\dots,x_n)
+\]
+
+\subsubsection*{Reasoning}
+
+\begin{itemize}
+\item Start with joint CDF.
+\item Differentiate with respect to all variables.
+\item Obtain joint density.
+\end{itemize}
+
+\subsection{Probability Computation}
+
+\[
+P(a_i \le X_i \le b_i) =
+\int_{a_1}^{b_1} \cdots \int_{a_n}^{b_n}
+f(x_1,\dots,x_n)\, dx_1 \cdots dx_n
+\]
+
+\section{Independence of Random Variables}
+
+\subsection{Definition}
+
+Random variables $X_1,\dots,X_n$ are independent if:
+
+\[
+p(x_1,\dots,x_n) =
+\prod_{i=1}^{n} p_{X_i}(x_i)
+\]
+
+or
+
+\[
+f(x_1,\dots,x_n) =
+\prod_{i=1}^{n} f_{X_i}(x_i)
+\]
+
+\subsubsection*{Step-by-Step Reasoning}
+
+\begin{enumerate}
+\item Compute joint distribution.
+\item Compute marginal distributions.
+\item Multiply marginals.
+\item Compare:
+\begin{itemize}
+\item Equal $\Rightarrow$ independent
+\item Not equal $\Rightarrow$ dependent
+\end{itemize}
+\end{enumerate}
+
+\section{Example 2: Uniformly Distributed 3D Vector}
+
+\subsection{Setup}
+
+Let $(X,Y,Z)$ be uniformly distributed in a region.
+
+\subsection{Joint PDF}
+
+\[
+f(x,y,z) =
+\begin{cases}
+c, & \text{inside region} \\
+0, & \text{outside}
+\end{cases}
+\]
+
+\subsection{Derivation}
+
+\begin{itemize}
+\item Uniform $\Rightarrow$ constant density $c$
+\item Apply normalization:
+\end{itemize}
+
+\[
+\int_{\text{region}} c\, dV = 1
+\]
+
+\[
+c = \frac{1}{\text{Volume of region}}
+\]
+
+\section{Example 3: Trivariate Random Variables}
+
+\subsection{Joint CDF}
+
+\[
+F(x,y,z) = P(X \le x, Y \le y, Z \le z)
+\]
+
+\subsection{Joint PDF}
+
+\[
+f(x,y,z) =
+\frac{\partial^3}{\partial x \partial y \partial z}
+F(x,y,z)
+\]
+
+\subsection{Marginal Distributions}
+
+\[
+f_X(x) = \int \int f(x,y,z)\, dy\, dz
+\]
+
+\[
+f_Y(y) = \int \int f(x,y,z)\, dx\, dz
+\]
+
+\[
+f_Z(z) = \int \int f(x,y,z)\, dx\, dy
+\]
+
+\subsubsection*{Reasoning}
+
+\begin{itemize}
+\item Start with joint PDF.
+\item Integrate out unwanted variables.
+\item Obtain marginals.
+\end{itemize}
+
+\section{Logical Structure of the Lecture}
+
+\begin{itemize}
+\item Define joint distribution
+\item Introduce PMF, CDF, PDF
+\item Study independence
+\item Apply to engineering systems (MIMO)
+\item Solve examples:
+\begin{itemize}
+\item General joint case
+\item Uniform 3D vector
+\item Trivariate variables
+\end{itemize}
+\end{itemize}
+
+\section{Exam-Focused Key Points}
+
+\begin{itemize}
+\item Joint CDF is the foundational definition
+\item PMF and PDF derive from it
+\item Independence $\Rightarrow$ factorization into marginals
+\item Marginals obtained via integration/summation
+\item Uniform distributions require normalization
+\end{itemize}
+
+\end{document}
