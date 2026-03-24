@@ -1,0 +1,246 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{\textbf{Lecture 19 Scribe \\ N-Variate Joint PDF / PMF / CDF}}
+\author{CSE400 – Fundamentals of Probability in Computing}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Introduction}
+\textbf{Topic:} N-Variate Joint Distribution
+
+\section*{Outline}
+\begin{enumerate}
+    \item Joint Distribution of N Random Variables
+    \item Definition
+    \item Example-1
+    \item Application: Large MIMO System
+    \item Joint PMF, PDF, CDF
+    \item Independence of Random Variables
+    \item Example-2: Uniformly Distributed 3D Vector
+    \item Example-3: Trivariate Random Variables
+\end{enumerate}
+
+\section*{Joint Distribution of N Random Variables}
+
+\subsection*{Definition}
+Let
+\[
+X_1, X_2, X_3, \dots, X_n
+\]
+be $n$ random variables defined on the same probability space.
+
+The joint distribution is:
+\[
+P(X_1 = x_1, X_2 = x_2, \dots, X_n = x_n)
+\]
+
+\subsection*{Assumptions}
+\begin{itemize}
+    \item All variables are defined on the same sample space
+    \item Variables may be discrete or continuous
+    \item Joint probabilities satisfy:
+    \begin{itemize}
+        \item Non-negativity
+        \item Total probability equals 1
+    \end{itemize}
+\end{itemize}
+
+\section*{Example 1: Joint PMF}
+
+For two variables $X$ and $Y$:
+\[
+P(X=x, Y=y)
+\]
+
+\subsection*{Properties}
+\begin{enumerate}
+    \item Non-negativity:
+    \[
+    P(X=x, Y=y) \ge 0
+    \]
+    \item Normalization:
+    \[
+    \sum_x \sum_y P(X=x, Y=y) = 1
+    \]
+\end{enumerate}
+
+\subsection*{Marginal Distributions}
+\[
+P(X=x) = \sum_y P(X=x, Y=y)
+\]
+\[
+P(Y=y) = \sum_x P(X=x, Y=y)
+\]
+
+\section*{Application: Large MIMO System}
+
+\subsection*{Concept}
+\begin{itemize}
+    \item MIMO = Multiple Input Multiple Output
+    \item Used in advanced wireless systems (e.g., 6G)
+\end{itemize}
+
+\subsection*{Modeling}
+\[
+X_1, X_2, \dots, X_n
+\]
+
+\subsection*{Use of Joint Distribution}
+\begin{itemize}
+    \item Captures relationships between multiple signals
+    \item Helps in:
+    \begin{itemize}
+        \item Signal detection
+        \item Noise analysis
+        \item Performance evaluation
+    \end{itemize}
+\end{itemize}
+
+\section*{Joint PMF, PDF, CDF}
+
+\subsection*{1. Joint PMF (Discrete Case)}
+\[
+p(x_1, x_2, \dots, x_n) = P(X_1=x_1, \dots, X_n=x_n)
+\]
+
+\textbf{Properties:}
+\begin{itemize}
+    \item $p \ge 0$
+    \item $\sum p = 1$
+\end{itemize}
+
+\subsection*{2. Joint PDF (Continuous Case)}
+\[
+f(x_1, x_2, \dots, x_n)
+\]
+
+\textbf{Properties:}
+\[
+f(x_1, \dots, x_n) \ge 0
+\]
+\[
+\int \dots \int f(x_1, \dots, x_n)\, dx_1 \dots dx_n = 1
+\]
+
+\subsection*{3. Joint CDF}
+\[
+F(x_1, \dots, x_n) = P(X_1 \le x_1, \dots, X_n \le x_n)
+\]
+
+\subsection*{Relation (PDF from CDF)}
+\[
+f(x_1, \dots, x_n) = \frac{\partial^n F}{\partial x_1 \partial x_2 \dots \partial x_n}
+\]
+
+\section*{Independence of Random Variables}
+
+\subsection*{Definition}
+Random variables are independent if:
+\[
+p(x_1, \dots, x_n) = p_1(x_1)p_2(x_2)\dots p_n(x_n)
+\]
+
+or
+
+\[
+f(x_1, \dots, x_n) = f_1(x_1)f_2(x_2)\dots f_n(x_n)
+\]
+
+\subsection*{Key Condition}
+\[
+\text{Joint Distribution} = \text{Product of Marginals}
+\]
+
+\subsection*{Implications}
+\begin{itemize}
+    \item Simplifies calculations
+    \item Removes dependency between variables
+\end{itemize}
+
+\section*{Example 2: Uniformly Distributed 3D Vector}
+
+\subsection*{Given}
+\[
+(X, Y, Z)
+\]
+is uniformly distributed in a region.
+
+\subsection*{Joint PDF}
+\[
+f(x,y,z) =
+\begin{cases}
+c & \text{inside region} \\
+0 & \text{outside}
+\end{cases}
+\]
+
+\subsection*{Finding Constant $c$}
+\[
+\int \int \int f(x,y,z)\, dx\, dy\, dz = 1
+\]
+\[
+c \cdot \text{Volume} = 1
+\]
+\[
+c = \frac{1}{\text{Volume}}
+\]
+
+\subsection*{Interpretation}
+\begin{itemize}
+    \item Equal probability density inside region
+    \item Zero outside
+\end{itemize}
+
+\section*{Example 3: Trivariate Random Variables}
+
+\subsection*{Joint PDF}
+\[
+f(x,y,z)
+\]
+
+\subsection*{Marginal PDFs}
+\[
+f_X(x) = \int \int f(x,y,z)\, dy\, dz
+\]
+\[
+f_Y(y) = \int \int f(x,y,z)\, dx\, dz
+\]
+\[
+f_Z(z) = \int \int f(x,y,z)\, dx\, dy
+\]
+
+\subsection*{Checking Independence}
+If:
+\[
+f(x,y,z) = f_X(x)f_Y(y)f_Z(z)
+\]
+then variables are independent.
+
+\section*{Summary}
+
+\begin{itemize}
+    \item Joint distribution handles multiple random variables
+    \item Types:
+    \begin{itemize}
+        \item PMF (discrete)
+        \item PDF (continuous)
+        \item CDF (cumulative)
+    \end{itemize}
+    \item Marginals obtained using:
+    \begin{itemize}
+        \item Summation (discrete)
+        \item Integration (continuous)
+    \end{itemize}
+    \item Independence:
+    \begin{itemize}
+        \item Product of marginals
+    \end{itemize}
+\end{itemize}
+
+\end{document}
