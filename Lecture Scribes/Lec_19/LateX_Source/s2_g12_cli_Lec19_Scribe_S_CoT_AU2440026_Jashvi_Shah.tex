@@ -1,0 +1,252 @@
+\documentclass[11pt]{article}
+
+% ===================== PACKAGES =====================
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{xcolor} 
+
+% ===================== HEADER & FOOTER =====================
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{CSE 400: Fundamentals of Probability in Computing}
+\rhead{Lecture-11 Scribe Submission}
+\cfoot{\thepage}
+
+% ===================== CUSTOM COMMANDS =====================
+\newcommand{\solution}{
+    \vspace{0.5cm}
+    \noindent\textbf{\textcolor{blue}{Solution:}}
+    \vspace{0.2cm}
+    
+}
+
+% ===================== TITLE =====================
+\title{
+    \normalsize School of Engineering and Applied Science (SEAS), Ahmedabad University \\
+    \vspace{0.2cm}
+    \textbf{CSE 400: Fundamentals of Probability in Computing}\\
+    \Large Lecture-19 Scribe Submission
+}
+\author{} 
+\date{}
+
+\begin{document}
+\maketitle
+
+\vspace{-2cm}
+\begin{center}
+    \begin{tabular}{ll}
+        \textbf{Name:} & {Jashvi Shah \hspace{2.5in}} \\ [1.5ex]
+        \textbf{Enrollment No:} & {AU2440026 \hspace{2.5in}} \\ [1.5ex]
+        \textbf{Email:} & {jashvi.s@ahduni.edu.in \hspace{2.1in}} \\ [1.5ex]
+    \end{tabular}
+\end{center}
+
+\hrule
+\vspace{0.5cm}
+
+\section*{CSE400 – Lecture 19 Scribe}
+
+\date{Instructor: Dhaval Patel, PhD \\ Date: March 24, 2026}
+
+\begin{document}
+
+\maketitle
+
+\section*{1. Joint Gaussian Distribution}
+
+\textbf{Definition:}
+\[
+f_{XY}(x,y)=\frac{1}{2\pi\sigma_X\sigma_Y\sqrt{1-\rho^2}}
+\exp\left(-\frac{1}{2(1-\rho^2)}\left[
+\left(\frac{x-\mu_X}{\sigma_X}\right)^2+
+\left(\frac{y-\mu_Y}{\sigma_Y}\right)^2
+-2\rho\left(\frac{x-\mu_X}{\sigma_X}\right)\left(\frac{y-\mu_Y}{\sigma_Y}\right)
+\right]\right)
+\]
+
+\textbf{Notation:}
+\begin{itemize}
+\item $\mu_X, \mu_Y$ : means
+\item $\sigma_X, \sigma_Y$ : standard deviations
+\item $\rho$ : correlation coefficient
+\end{itemize}
+
+\section*{2. Example: Joint Gaussian}
+
+\textbf{Given:}
+\[
+\mu_X=2,\quad \sigma_X^2=1 \Rightarrow \sigma_X=1
+\]
+\[
+\mu_Y=-3,\quad \sigma_Y^2=4 \Rightarrow \sigma_Y=2
+\]
+\[
+\text{cov}(X,Y)=-1
+\]
+
+\textbf{Step 1: Correlation}
+\[
+\rho=\frac{\text{cov}(X,Y)}{\sigma_X\sigma_Y}
+=\frac{-1}{1\cdot2}=-\frac{1}{2}
+\]
+
+\textbf{Step 2: Substitution}
+Substitute into the joint Gaussian formula to obtain the joint PDF.
+
+\section*{3. Marginal PDFs}
+
+\textbf{Definition:}
+\[
+f_X(x)=\int_{-\infty}^{\infty}f_{XY}(x,y)\,dy,\quad
+f_Y(y)=\int_{-\infty}^{\infty}f_{XY}(x,y)\,dx
+\]
+
+\textbf{Result:}
+\[
+X\sim \mathcal{N}(2,1), \quad Y\sim \mathcal{N}(-3,4)
+\]
+
+\[
+f_X(x)=\frac{1}{\sqrt{2\pi}}e^{-\frac{(x-2)^2}{2}}
+\]
+\[
+f_Y(y)=\frac{1}{2\sqrt{2\pi}}e^{-\frac{(y+3)^2}{8}}
+\]
+
+\section*{4. Probability Computation}
+
+\textbf{Step 1:}
+\[
+P(X<0)=F_X(0)
+\]
+
+\textbf{Step 2: Standardization}
+\[
+Z=\frac{X-2}{1}
+\Rightarrow P(X<0)=P(Z<-2)
+\]
+
+\textbf{Step 3: Symmetry}
+\[
+P(Z<-2)=P(Z>2)
+\]
+
+\textbf{Final Result:}
+\[
+P(X<0)=Q(2)
+\]
+
+\section*{5. Joint Distribution of N Variables}
+
+\[
+\mathbf{X}=
+\begin{bmatrix}
+X_1 \\ X_2 \\ \vdots \\ X_N
+\end{bmatrix}
+\]
+
+Joint distribution is described using:
+\begin{itemize}
+\item Joint PMF
+\item Joint PDF
+\item Joint CDF
+\end{itemize}
+
+\section*{6. Joint Functions}
+
+\textbf{Joint PMF:}
+\[
+P(X_1=x_1,\dots,X_N=x_N)
+\]
+
+\textbf{Joint CDF:}
+\[
+F(x_1,\dots,x_N)=P(X_1\le x_1,\dots,X_N\le x_N)
+\]
+
+\textbf{Joint PDF:}
+\[
+f(x_1,\dots,x_N)=\frac{\partial^N F}{\partial x_1\cdots\partial x_N}
+\]
+
+\section*{7. Independence of Random Variables}
+
+\[
+f_{X_1,\dots,X_N}(x_1,\dots,x_N)
+=\prod_{i=1}^{N} f_{X_i}(x_i)
+\]
+
+\section*{8. Example: Uniform Distribution (3D)}
+
+\textbf{Given:}
+\[
+f(x_1,x_2,x_3)=
+\begin{cases}
+C, & |x_i|\le 1 \\
+0, & \text{otherwise}
+\end{cases}
+\]
+
+\textbf{Step 1: Find $C$}
+\[
+\int_{-1}^{1}\int_{-1}^{1}\int_{-1}^{1}C\,dx_1dx_2dx_3=1
+\]
+\[
+C\cdot 2\cdot 2\cdot 2=1 \Rightarrow C=\frac{1}{8}
+\]
+
+\textbf{Step 2: Marginals}
+\[
+f_{X_1,X_2}(x_1,x_2)=\frac{1}{4}, \quad
+f_{X_1}(x_1)=\frac{1}{2}
+\]
+
+\textbf{Step 3: Independence}
+\[
+f_{X_1,X_2,X_3}=\frac{1}{8}
+\]
+\[
+f_{X_1}f_{X_2}f_{X_3}=\frac{1}{2}\cdot\frac{1}{2}\cdot\frac{1}{2}=\frac{1}{8}
+\]
+
+\textbf{Conclusion: Independent}
+
+\section*{9. Example: Trivariate Exponential}
+
+\textbf{Given:}
+\[
+f_{XYZ}(x,y,z)=
+\begin{cases}
+Ke^{-(ax+by+cz)}, & x,y,z>0 \\
+0, & \text{otherwise}
+\end{cases}
+\]
+
+\textbf{Step 1: Find $K$}
+\[
+K\int_0^\infty e^{-ax}dx \int_0^\infty e^{-by}dy \int_0^\infty e^{-cz}dz=1
+\]
+\[
+K\cdot \frac{1}{a}\cdot \frac{1}{b}\cdot \frac{1}{c}=1
+\Rightarrow K=abc
+\]
+
+\textbf{Step 2: Marginals}
+\[
+f_X(x)=ae^{-ax}
+\]
+
+\textbf{Step 3: Independence}
+\[
+f_{XYZ}=abc e^{-(ax+by+cz)}
+\]
+\[
+f_X f_Y f_Z=abc e^{-(ax+by+cz)}
+\]
+
+\textbf{Conclusion: Independent}
+
+\end{document}

@@ -1,0 +1,255 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+
+\geometry{margin=1in}
+
+\title{CSE400 -- Fundamentals of Probability in Computing\\
+Lecture 7: Expectation, CDFs, PDFs and Problem Solving}
+\author{Lecture Scribe}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Overview of the Lecture}
+
+This lecture discusses important concepts used in probability theory and statistical modeling:
+
+\begin{enumerate}
+\item Cumulative Distribution Function (CDF)
+\item Probability Density Function (PDF)
+\item Expectation of Random Variables
+\item Expectation of a Function of a Random Variable
+\item Linear Operations with Expectation
+\item Moments and Central Moments
+\item Variance, Skewness and Kurtosis
+\end{enumerate}
+
+These concepts help describe the behavior, average value, and distribution of random variables.
+
+\section{Cumulative Distribution Function (CDF)}
+
+\subsection{Definition}
+
+The \textbf{Cumulative Distribution Function (CDF)} of a random variable $X$ is defined as
+
+\[
+F_X(x) = P(X \leq x)
+\]
+
+It represents the probability that the random variable takes a value less than or equal to $x$.
+
+\subsection{Properties of the CDF}
+
+\textbf{1. Non-Decreasing Property}
+
+\[
+F_X(x_1) \leq F_X(x_2) \quad \text{if } x_1 < x_2
+\]
+
+\textbf{2. Limits at Infinity}
+
+\[
+\lim_{x \to -\infty} F_X(x) = 0
+\]
+
+\[
+\lim_{x \to \infty} F_X(x) = 1
+\]
+
+\textbf{3. Right Continuity}
+
+\[
+\lim_{h \to 0^+} F_X(x+h) = F_X(x)
+\]
+
+\textbf{4. Probability Between Two Values}
+
+\[
+P(a < X \leq b) = F_X(b) - F_X(a)
+\]
+
+\section{Probability Density Function (PDF)}
+
+\subsection{Definition}
+
+For a continuous random variable, the \textbf{Probability Density Function (PDF)} is defined as
+
+\[
+f_X(x) = \frac{d}{dx}F_X(x)
+\]
+
+\subsection{Relationship Between PDF and CDF}
+
+\[
+F_X(x) = \int_{-\infty}^{x} f_X(t)\,dt
+\]
+
+Thus,
+
+\begin{itemize}
+\item PDF is the derivative of the CDF
+\item CDF is the integral of the PDF
+\end{itemize}
+
+\subsection{Properties of PDF}
+
+\textbf{1. Non-negativity}
+
+\[
+f_X(x) \ge 0
+\]
+
+\textbf{2. Total Probability Equals 1}
+
+\[
+\int_{-\infty}^{\infty} f_X(x)\,dx = 1
+\]
+
+\textbf{3. Probability Between Two Points}
+
+\[
+P(a < X < b) = \int_a^b f_X(x)\,dx
+\]
+
+\section{Expectation of Random Variables}
+
+\subsection{Definition}
+
+The \textbf{Expectation} (Expected Value) represents the average value of a random variable over many repeated experiments.
+
+\subsection{Expectation of Discrete Random Variable}
+
+\[
+E[X] = \sum x_i p_i
+\]
+
+\subsection{Expectation of Continuous Random Variable}
+
+\[
+E[X] = \int_{-\infty}^{\infty} x f_X(x)\,dx
+\]
+
+\section{Expectation of a Function of a Random Variable}
+
+Sometimes we compute the expectation of a function $g(X)$.
+
+\subsection{Discrete Case}
+
+\[
+E[g(X)] = \sum g(x_i) P(X = x_i)
+\]
+
+\subsection{Continuous Case}
+
+\[
+E[g(X)] = \int_{-\infty}^{\infty} g(x) f_X(x)\,dx
+\]
+
+\section{Linearity of Expectation}
+
+For constants $a$ and $b$:
+
+\[
+E[aX + b] = aE[X] + b
+\]
+
+For two random variables $X$ and $Y$:
+
+\[
+E[aX + bY] = aE[X] + bE[Y]
+\]
+
+Linearity holds even when the random variables are not independent.
+
+\section{Moments of Random Variables}
+
+The \textbf{$n$th moment about the origin} is defined as
+
+\[
+E[X^n]
+\]
+
+Moments describe the mean, spread, and shape of a distribution.
+
+\section{Central Moments}
+
+Central moments are calculated about the mean:
+
+\[
+E[(X-\mu)^n]
+\]
+
+where
+
+\[
+\mu = E[X]
+\]
+
+\section{Variance}
+
+Variance measures the spread of the distribution.
+
+\[
+Var(X) = E[(X-\mu)^2]
+\]
+
+Equivalent form:
+
+\[
+Var(X) = E[X^2] - (E[X])^2
+\]
+
+\section{Skewness}
+
+Skewness measures the asymmetry of a distribution.
+
+\begin{itemize}
+\item Positive Skewness: Tail extends to the right.
+\item Negative Skewness: Tail extends to the left.
+\end{itemize}
+
+\section{Kurtosis}
+
+Kurtosis measures the peakedness and heaviness of the tails of a distribution.
+
+\begin{itemize}
+\item High kurtosis: heavy tails and sharp peak
+\item Low kurtosis: flatter distribution
+\end{itemize}
+
+\section{Summary}
+
+Key concepts covered in this lecture include:
+
+\textbf{CDF}
+
+\[
+F_X(x) = P(X \le x)
+\]
+
+\textbf{PDF}
+
+\[
+f_X(x) = \frac{d}{dx}F_X(x)
+\]
+
+\textbf{Expectation}
+
+\[
+E[X] = \sum x_i p_i
+\]
+
+or
+
+\[
+E[X] = \int x f_X(x)dx
+\]
+
+Additional topics include expectation of functions, linearity of expectation, moments, variance, skewness, and kurtosis.
+
+\end{document}

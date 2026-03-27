@@ -1,0 +1,350 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{LECTURE 19 — N-VARIATE JOINT DISTRIBUTIONS\\
+\large High-Density Logical Revision Map}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{WHY JOINT DISTRIBUTIONS? (Concept Foundation)}
+
+\subsection*{Step 1: Representation}
+
+\[
+\mathbf{X} = [X_1, X_2, \dots, X_N]^T
+\]
+
+\textbf{Reasoning:}
+\begin{itemize}
+    \item Instead of treating variables separately, we group them.
+    \item Joint distribution describes probability behavior of all variables together.
+    \item Transition: single-variable $\rightarrow$ multi-variable framework.
+\end{itemize}
+
+\subsection*{Step 2: Forms of Representation}
+
+\begin{itemize}
+    \item Joint PMF (discrete)
+    \item Joint PDF (continuous)
+    \item Joint CDF
+\end{itemize}
+
+\textbf{Reasoning:}
+\begin{itemize}
+    \item Direct extensions of single-variable definitions.
+    \item Now we consider simultaneous events.
+\end{itemize}
+
+\section{CORE DEFINITIONS}
+
+\subsection{Joint PMF}
+
+\[
+P_{X_1,\dots,X_N}(x_1,\dots,x_N) = P(X_1 = x_1, \dots, X_N = x_N)
+\]
+
+\textbf{Reasoning:}
+\begin{itemize}
+    \item Probability of all variables taking values simultaneously.
+    \item Represents one combined event.
+\end{itemize}
+
+\subsection{Joint CDF}
+
+\[
+F(x_1,\dots,x_N) = P(X_1 \le x_1, \dots, X_N \le x_N)
+\]
+
+\textbf{Reasoning:}
+\begin{itemize}
+    \item Accumulates probability over an N-dimensional region.
+    \item Extension of 1D CDF: line $\rightarrow$ region.
+\end{itemize}
+
+\subsection{Joint PDF}
+
+\[
+f = \frac{\partial^N F}{\partial x_1 \cdots \partial x_N}
+\]
+
+\textbf{Reasoning:}
+\begin{itemize}
+    \item Same logic as 1D: PDF = derivative of CDF.
+    \item For $N$ variables, take $N$ partial derivatives.
+\end{itemize}
+
+\section{INDEPENDENCE CONDITION}
+
+\[
+f(x_1,\dots,x_N) = \prod_{i=1}^{N} f_{X_i}(x_i)
+\]
+
+\textbf{Reasoning:}
+\begin{itemize}
+    \item Joint PDF equals product of marginals.
+    \item This is the test for independence.
+\end{itemize}
+
+\section{EXAMPLE 1 — JOINT GAUSSIAN}
+
+\subsection*{Step 1: Given}
+
+\[
+\mu_X = 2, \quad \sigma_X^2 = 1
+\]
+\[
+\mu_Y = -3, \quad \sigma_Y^2 = 4
+\]
+\[
+\text{cov}(X,Y) = -1
+\]
+
+\subsection*{Step 2: Correlation}
+
+\[
+\rho = \frac{\text{cov}(X,Y)}{\sigma_X \sigma_Y}
+\]
+
+\textbf{Reasoning:} Gaussian formula uses correlation.
+
+\subsection*{Step 3: Standard Deviations}
+
+\[
+\sigma_X = 1, \quad \sigma_Y = 2
+\]
+
+\subsection*{Step 4: Compute $\rho$}
+
+\[
+\rho = \frac{-1}{(1)(2)} = -\frac{1}{2}
+\]
+
+\subsection*{Step 5: Joint PDF}
+
+Substitute values into Gaussian formula.
+
+\subsection*{Step 6: Marginals}
+
+\[
+f_X(x) = \int f_{XY}(x,y)\,dy, \quad
+f_Y(y) = \int f_{XY}(x,y)\,dx
+\]
+
+\[
+X \sim N(\mu_X, \sigma_X^2), \quad Y \sim N(\mu_Y, \sigma_Y^2)
+\]
+
+\textbf{Reasoning:} Marginals of jointly Gaussian variables are Gaussian.
+
+\subsection*{Step 7: Compute $P(X < 0)$}
+
+\[
+P(X < 0) = F_X(0)
+\]
+
+\subsubsection*{Standardization}
+
+\[
+Z = \frac{X - \mu_X}{\sigma_X}
+\]
+
+\[
+P(X < 0) = P\left(Z < \frac{0 - 2}{1}\right) = P(Z < -2)
+\]
+
+\subsubsection*{Symmetry}
+
+\[
+\Phi(-x) = 1 - \Phi(x) = P(Z > x)
+\]
+
+\[
+P(Z < -2) = P(Z > 2)
+\]
+
+\subsubsection*{Q-function}
+
+\[
+Q(x) = P(Z > x)
+\]
+
+\[
+P(X < 0) = Q(2)
+\]
+
+\section{APPLICATION — LARGE MIMO SYSTEM}
+
+\subsection*{System}
+
+\begin{itemize}
+    \item $M$ transmit antennas
+    \item $N$ receive antennas
+\end{itemize}
+
+\subsection*{Channel Model}
+
+\[
+h_{ij} = \text{random variable}
+\]
+
+\subsection*{Matrix Form}
+
+\[
+H =
+\begin{bmatrix}
+h_{11} & \cdots & h_{1N} \\
+\vdots & \ddots & \vdots \\
+h_{M1} & \cdots & h_{MN}
+\end{bmatrix}
+\]
+
+\textbf{Reasoning:} Multiple random variables $\Rightarrow$ joint modeling.
+
+\section{EXAMPLE 2 — UNIFORM 3D VECTOR}
+
+\subsection*{Given}
+
+\[
+|x_1| \le 1, \quad |x_2| \le 1, \quad |x_3| \le 1
+\]
+
+\[
+f =
+\begin{cases}
+C, & \text{inside cube} \\
+0, & \text{otherwise}
+\end{cases}
+\]
+
+\subsection*{Find $C$}
+
+\[
+\iiint f = 1
+\]
+
+\[
+C (2)(2)(2) = 1 \Rightarrow C = \frac{1}{8}
+\]
+
+\subsection*{Marginals}
+
+\[
+f_{X_1,X_2} = \int_{-1}^{1} \frac{1}{8} dx_3 = \frac{1}{4}
+\]
+
+\[
+f_{X_1} = \int_{-1}^{1} \int_{-1}^{1} \frac{1}{8} dx_2 dx_3 = \frac{1}{2}
+\]
+
+\subsection*{Conditional PDFs}
+
+\[
+f_{X_1|X_2,X_3} = \frac{1/8}{1/4} = \frac{1}{2}
+\]
+
+\[
+f_{X_1,X_2|X_3} = \frac{1/8}{1/2} = \frac{1}{4}
+\]
+
+\subsection*{Independence Check}
+
+\[
+\text{LHS} = \frac{1}{8}
+\]
+
+\[
+\text{RHS} = \frac{1}{2} \cdot \frac{1}{2} \cdot \frac{1}{2} = \frac{1}{8}
+\]
+
+\textbf{Conclusion:} Independent
+
+\section{EXAMPLE 3 — TRIVARIATE EXPONENTIAL}
+
+\subsection*{Given}
+
+\[
+f_{XYZ} = K e^{-(ax + by + cz)}, \quad x,y,z > 0
+\]
+
+\subsection*{Find $K$}
+
+\[
+\iiint f = 1
+\]
+
+\[
+e^{-(ax+by+cz)} = e^{-ax} e^{-by} e^{-cz}
+\]
+
+\[
+K \left(\frac{1}{a}\right)\left(\frac{1}{b}\right)\left(\frac{1}{c}\right) = 1
+\]
+
+\[
+K = abc
+\]
+
+\subsection*{Marginals}
+
+\[
+f_{XY} = ab e^{-(ax+by)}
+\]
+
+\[
+f_X = a e^{-ax}
+\]
+
+\subsection*{Independence Check}
+
+\[
+\text{LHS} = abc e^{-(ax+by+cz)}
+\]
+
+\[
+\text{RHS} = (ae^{-ax})(be^{-by})(ce^{-cz}) = abc e^{-(ax+by+cz)}
+\]
+
+\textbf{Conclusion:} Independent
+
+\section{FINAL REVISION FLOW (MENTAL MAP)}
+
+\begin{itemize}
+    \item \textbf{Vector Form} $\rightarrow$ Joint Behavior
+    
+    \item \textbf{PMF / CDF / PDF} $\rightarrow$ Core Definitions
+    
+    \item \textbf{Independence} $\rightarrow$ Product Rule
+    
+    \item \textbf{Gaussian Case:}
+    \begin{itemize}
+        \item $\text{cov} \rightarrow \rho$
+        \item Substitute into joint PDF
+        \item Marginals
+        \item Standardization
+        \item $Q$-function
+    \end{itemize}
+    
+    \item \textbf{Uniform Cube:}
+    \begin{itemize}
+        \item Normalize
+        \item Integrate (marginals)
+        \item Conditional PDFs
+        \item Independence check
+    \end{itemize}
+    
+    \item \textbf{Exponential Case:}
+    \begin{itemize}
+        \item Factorization
+        \item Normalize
+        \item Marginals
+        \item Independence check
+    \end{itemize}
+    
+\end{itemize}
+
+\end{document}
