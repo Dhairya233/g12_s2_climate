@@ -1,0 +1,264 @@
+\documentclass[12pt]{article}
+
+% Packages
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{amsmath, amssymb}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+% Formatting
+\onehalfspacing
+\setlist[itemize]{noitemsep}
+\setlist[enumerate]{noitemsep}
+
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.5em}{}
+
+\begin{document}
+
+\begin{center}
+{\Large \textbf{CSE400 -- Fundamentals of Probability in Computing}}\\[0.2cm]
+{\large Lecture 23 Scribe (Closed-Notes Exam Revision)}\\[0.3cm]
+
+\textbf{Lecture Title:} Predicting the Impossible: Tail Bounds and System Reliability\\
+\textbf{Case Study:} Amazon Black Friday Sale 2026\\
+\textbf{Instructor:} Dhaval Patel, PhD\\
+\textbf{Date:} April 02, 2026
+\end{center}
+
+\hrule
+\vspace{0.4cm}
+
+\section{Case Study Context: Amazon Black Friday Sale 2026}
+
+The sale is expected to begin on:
+
+\begin{center}
+\textbf{Friday, November 27, 2026}
+\end{center}
+
+The timeline is inferred from historical patterns and expert forecasts.
+
+\subsection{Interpretation}
+
+The case study is used to:
+
+\begin{itemize}
+\item Motivate uncertainty in large-scale systems
+\item Connect real-world events with computational modeling of uncertainty
+\end{itemize}
+
+\section{Core Theme: Uncertainty and Computing}
+
+The lecture emphasizes:
+
+\begin{quote}
+``Connect with Uncertainty and Computing''
+\end{quote}
+
+\subsection{Implication}
+
+Real-world systems involve:
+
+\begin{itemize}
+\item Uncertain demand
+\item Random fluctuations
+\end{itemize}
+
+Mathematical tools are required to:
+
+\begin{itemize}
+\item Quantify uncertainty
+\item Predict extreme events
+\end{itemize}
+
+\section{Tail Bounds Introduced}
+
+The lecture introduces three fundamental tools:
+
+\begin{itemize}
+\item Markov's Inequality
+\item Chebyshev's Inequality
+\item Chernoff Bound
+\end{itemize}
+
+These are used to bound probabilities of extreme deviations.
+
+\section{Markov's Inequality}
+
+\subsection{Assumptions}
+
+\begin{itemize}
+\item $X \ge 0$ (non-negative random variable)
+\item $a > 0$
+\end{itemize}
+
+\subsection{Definition}
+
+\[
+P(X \ge a) \le \frac{\mathbb{E}[X]}{a}
+\]
+
+\subsection{Step-by-Step Reasoning}
+
+\begin{enumerate}
+\item Consider non-negative random variable $X$
+\item Focus on probability $P(X \ge a)$
+\item Use expectation $\mathbb{E}[X]$
+\item Since $X \ge a$ contributes at least $a$:
+\[
+\mathbb{E}[X] \ge a \cdot P(X \ge a)
+\]
+\item Rearranging:
+\[
+P(X \ge a) \le \frac{\mathbb{E}[X]}{a}
+\]
+\end{enumerate}
+
+\subsection{Conclusion}
+
+Provides an upper bound using only expectation.
+
+\section{Chebyshev's Inequality}
+
+\subsection{Assumptions}
+
+Random variable $X$ with:
+
+\begin{itemize}
+\item Mean $\mu$
+\item Variance $\sigma^2$
+\end{itemize}
+
+\subsection{Definition}
+
+\[
+P(|X - \mu| \ge k\sigma) \le \frac{1}{k^2}
+\]
+
+\subsection{Step-by-Step Reasoning}
+
+\begin{enumerate}
+\item Consider deviation $|X - \mu|$
+\item Square both sides:
+\[
+(X - \mu)^2 \ge k^2 \sigma^2
+\]
+\item Apply Markov's inequality:
+\[
+P((X - \mu)^2 \ge k^2 \sigma^2)
+\le \frac{\mathbb{E}[(X - \mu)^2]}{k^2 \sigma^2}
+\]
+\item Use:
+\[
+\mathbb{E}[(X - \mu)^2] = \sigma^2
+\]
+\item Substitute:
+\[
+P(|X - \mu| \ge k\sigma) \le \frac{1}{k^2}
+\]
+\end{enumerate}
+
+\subsection{Conclusion}
+
+Improves over Markov by incorporating variance.
+
+\section{Chernoff Bound}
+
+\subsection{Purpose}
+
+Provides tighter (exponentially decreasing) bounds.
+
+\subsection{General Form}
+
+\[
+P(X \ge (1+\delta)\mu) \le e^{-f(\delta,\mu)}
+\]
+
+\subsection{Step-by-Step Reasoning}
+
+\begin{enumerate}
+\item Start with:
+\[
+P(X \ge a)
+\]
+\item Apply exponential transformation:
+\[
+P(e^{tX} \ge e^{ta})
+\]
+\item Apply Markov's inequality:
+\[
+P(e^{tX} \ge e^{ta}) \le \frac{\mathbb{E}[e^{tX}]}{e^{ta}}
+\]
+\item Choose parameter $t$ to minimize the bound
+\item Result yields exponential decay
+\end{enumerate}
+
+\subsection{Conclusion}
+
+\begin{itemize}
+\item Strongest among the three bounds
+\item Useful for rare event analysis
+\end{itemize}
+
+\section{Conceptual Integration with Case Study}
+
+The Amazon sale represents a high-uncertainty system.
+
+\subsection{Application of Tail Bounds}
+
+\begin{itemize}
+\item Predict extreme load conditions
+\item Ensure system reliability
+\end{itemize}
+
+\subsection{Logical Flow}
+
+\begin{itemize}
+\item Real-world uncertainty introduced
+\item Mathematical tools presented
+\item Applied to system reliability reasoning
+\end{itemize}
+
+\section{Class Participation}
+
+The lecture includes class participation.
+
+\subsection{Interpretation}
+
+Students are expected to:
+
+\begin{itemize}
+\item Engage with concepts
+\item Apply inequalities in problem-solving
+\end{itemize}
+
+\section{Final Summary (Exam-Oriented)}
+
+The lecture connects probability theory with system reliability.
+
+\subsection{Core Tools}
+
+\begin{itemize}
+\item Markov's Inequality --- expectation-based bound
+\item Chebyshev's Inequality --- variance-based bound
+\item Chernoff Bound --- exponential tail bound
+\end{itemize}
+
+\subsection{Applications}
+
+\begin{itemize}
+\item Analyze rare events
+\item Model uncertainty in computing systems
+\item Support reliability in large-scale applications
+\end{itemize}
+
+\vspace{0.5cm}
+
+\begin{center}
+\textbf{End of Lecture 23 Scribe}
+\end{center}
+
+\end{document}
