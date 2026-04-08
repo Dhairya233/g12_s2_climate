@@ -1,0 +1,418 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\title{Predicting the impossible: Tail Bounds and system reliability \\ case study amazon black friday sale 2026 \\ Lecture 23 Scribe}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+%----------------------------------
+
+\section*{$\Rightarrow$ Real-World Motivation → Why This Topic Exists}
+
+\textbf{From page 2:}
+
+Amazon Black Friday Sale → high, uncertain traffic
+
+\vspace{0.2cm}
+
+\textbf{Reasoning:}
+
+\begin{enumerate}
+\item Traffic is not deterministic
+\item Cannot rely on fixed values
+\item Must model uncertainty mathematically
+\end{enumerate}
+
+\vspace{0.6cm}
+
+%----------------------------------
+
+\section*{$\Rightarrow$ Modeling the System Using Probability}
+
+\textbf{From page 3:}
+
+Requests arrive randomly → Poisson arrivals  
+
+Multiple servers  
+
+Bursty arrivals  
+
+Highlight: $\ge k$ jobs in a time window  
+
+\vspace{0.2cm}
+
+\textbf{Reasoning:}
+
+Define:
+
+\[
+X = \text{number of arrivals}
+\]
+
+System overload condition:
+
+\[
+X \ge k
+\]
+
+\vspace{0.6cm}
+
+%----------------------------------
+
+\section*{$\Rightarrow$ Core Quantity of Interest}
+
+\textbf{From page 4:}
+
+\[
+P(X \ge k)
+\]
+
+\vspace{0.2cm}
+
+\textbf{Reasoning:}
+
+\begin{enumerate}
+\item Probability of system failure
+\item SLA violation risk
+\end{enumerate}
+
+\vspace{0.6cm}
+
+%----------------------------------
+
+\section*{$\Rightarrow$ Key Insight from Graph (Mean vs Tail)}
+
+\textbf{From page 5:}
+
+Most values fluctuate near mean  
+
+Few spikes cross threshold ($k = 60$)  
+
+Empirical crash rate shown  
+
+\vspace{0.2cm}
+
+\textbf{Statement:}
+
+\begin{center}
+\textit{``The mean is safe. The tail is catastrophic.''}
+\end{center}
+
+\vspace{0.2cm}
+
+\textbf{Reasoning:}
+
+\begin{enumerate}
+\item Mean describes typical behavior
+\item Failures occur in rare extreme events
+\item Must study tail probability, not mean
+\end{enumerate}
+
+\vspace{0.6cm}
+
+%----------------------------------
+
+\section*{$\Rightarrow$ Why Exact Probability is Not Used}
+
+\textbf{From page 6:}
+
+\begin{center}
+\textit{``We cannot always calculate the exact probability of a traffic spike.''}
+\end{center}
+
+\vspace{0.2cm}
+
+\textbf{Reasoning:}
+
+\begin{enumerate}
+\item Exact distribution may be unknown
+\item May be complex to compute
+\item Use upper bounds
+\end{enumerate}
+
+\vspace{0.6cm}
+
+%----------------------------------
+
+\section*{$\Rightarrow$ Hierarchy of Bounds (Information vs Accuracy)}
+
+Markov → Mean $(\mu)$  
+
+Chebyshev → Mean + Variance  
+
+Chernoff → Full distribution (MGF)  
+
+\vspace{0.2cm}
+
+\textbf{Reasoning:}
+
+\begin{enumerate}
+\item More input → tighter bound
+\item Less input → looser bound
+\end{enumerate}
+
+\vspace{0.6cm}
+
+%----------------------------------
+
+\section*{$\Rightarrow$ Markov Inequality}
+
+\[
+P(X \ge a) \le \frac{\mu}{a}
+\]
+
+\vspace{0.2cm}
+
+Uses only mean  
+
+Decay: $1/k$ (linear)  
+
+Exact $\approx 0.004$  
+
+Markov $\approx 0.714$  
+
+\vspace{0.2cm}
+
+\textbf{Conclusion:}
+
+Very loose bound  
+
+``Wastes space''  
+
+\vspace{0.6cm}
+
+%----------------------------------
+
+\section*{$\Rightarrow$ Chebyshev Inequality}
+
+\[
+P(X \ge a) \le \frac{\sigma^2}{(a-\mu)^2}
+\]
+
+\vspace{0.2cm}
+
+Uses variance (captures spread)  
+
+Decay: $1/k^2$  
+
+Exact $\approx 0.004$  
+
+Chebyshev $\approx 0.125$  
+
+\vspace{0.2cm}
+
+\textbf{Conclusion:}
+
+Tighter than Markov  
+
+Still overestimates  
+
+\vspace{0.6cm}
+
+%----------------------------------
+
+\section*{$\Rightarrow$ Chernoff Bound}
+
+\[
+P(X \ge a) \le \min_{t>0} e^{-ta} M_X(t)
+\]
+
+\vspace{0.2cm}
+
+Uses full distribution (MGF)  
+
+Includes optimization over $t$  
+
+Fastest decay (exponential)  
+
+Closest to exact tail  
+
+\vspace{0.2cm}
+
+\textbf{Conclusion:}
+
+Tightest bound  
+
+Best approximation  
+
+\vspace{0.6cm}
+
+%----------------------------------
+
+\section*{$\Rightarrow$ Decay Comparison}
+
+Markov → Linear $(1/k)$  
+
+Chebyshev → Polynomial $(1/k^2)$  
+
+Chernoff → Exponential  
+
+\vspace{0.6cm}
+
+%----------------------------------
+
+\section*{$\Rightarrow$ Case Study — SLA Breach}
+
+$\lambda = 500$  
+
+Threshold = 600  
+
+\vspace{0.2cm}
+
+\[
+P(X > 600)
+\]
+
+\vspace{0.2cm}
+
+Determines system failure risk  
+
+Determines infrastructure requirement  
+
+\vspace{0.6cm}
+
+%----------------------------------
+
+\section*{$\Rightarrow$ Effect of Different Bounds}
+
+Exact $\sim 1.4\%$  
+
+Chernoff $\sim 8.8\%$  
+
+Chebyshev $\sim 20\%$  
+
+Markov $\sim 90\%$  
+
+\vspace{0.2cm}
+
+\textbf{Insight:}
+
+Markov makes system look broken  
+
+\vspace{0.6cm}
+
+%----------------------------------
+
+\section*{$\Rightarrow$ Financial Consequence}
+
+\[
+\text{Waste Multiplier} =
+\frac{\text{Bound Estimate}}{\text{Exact Probability}}
+\]
+
+\vspace{0.2cm}
+
+Markov → extremely high waste  
+
+Chebyshev → moderate  
+
+Chernoff → lowest  
+
+\vspace{0.6cm}
+
+%----------------------------------
+
+\section*{$\Rightarrow$ Core Insight}
+
+\begin{center}
+\textbf{``Mathematical Over-estimation = Financial Over-provisioning''}
+\end{center}
+
+\vspace{0.6cm}
+
+%----------------------------------
+
+\section*{$\Rightarrow$ Distribution Sensitivity}
+
+Normal / Poisson / Binomial → Chernoff works well  
+
+Gamma → overestimation  
+
+\vspace{0.6cm}
+
+%----------------------------------
+
+\section*{$\Rightarrow$ Engineer’s Decision Framework}
+
+Markov → Rough check  
+
+Chebyshev → Limited info  
+
+Chernoff → SLA precision  
+
+\vspace{0.6cm}
+
+%----------------------------------
+
+\section*{$\Rightarrow$ Laplace Distribution Exercise}
+
+\[
+X \sim \text{Laplace}(\mu,b)
+\]
+
+\[
+a = \mu + 3\sigma
+\]
+
+\vspace{0.6cm}
+
+%----------------------------------
+
+\section*{$\Rightarrow$ Derivation Blueprint}
+
+\[
+M_X(t) = E[e^{tX}]
+\]
+
+\[
+P(X \ge a) \le e^{-ta} M_X(t)
+\]
+
+\vspace{0.2cm}
+
+\begin{enumerate}
+\item Differentiate w.r.t $t$
+\item Set derivative = 0
+\item Solve for $t$
+\item Substitute optimal $t$
+\end{enumerate}
+
+\vspace{0.6cm}
+
+%----------------------------------
+
+\section*{FINAL LOGICAL FLOW}
+
+Real systems → uncertain traffic  
+
+Failures occur in tail events  
+
+\vspace{0.2cm}
+
+\[
+P(X \ge k)
+\]
+
+\vspace{0.2cm}
+
+Markov (mean)  
+
+Chebyshev (variance)  
+
+Chernoff (MGF)  
+
+\vspace{0.2cm}
+
+Linear $<$ Polynomial $<$ Exponential  
+
+Tighter bound → better estimate  
+
+Better estimate → correct system sizing  
+
+Loose bound → wasted cost  
+
+\end{document}
