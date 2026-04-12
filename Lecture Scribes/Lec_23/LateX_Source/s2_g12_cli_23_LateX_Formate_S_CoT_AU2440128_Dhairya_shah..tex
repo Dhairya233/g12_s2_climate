@@ -1,0 +1,88 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+
+% Page Layout
+\geometry{a4paper, margin=1in}
+
+% Title Information
+\title{CSE 400: Fundamentals of Probability in Computing \\ \textbf{Lecture 23 Scribe: Stationary Distributions of Markov Chains}}
+\author{Dhairya Shah (AU2440128)}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Lecture Purpose}
+This scribe is intended as authoritative reference material for exam preparation. It reconstructs the logical flow of Lecture 23, focusing on the long-term behavior of discrete-time Markov chains and the calculation of stationary distributions.
+
+\section{Definitions and Notation}
+\subsection{Stationary Distribution}
+A probability distribution $\pi = [\pi_1, \pi_2, \dots, \pi_n]$ is called a \textbf{stationary distribution} for a Markov chain with transition probability matrix $P$ if it satisfies the following conditions:
+\begin{enumerate}
+    \item \textbf{Balance Equation:} 
+    \[ \pi P = \pi \]
+    \item \textbf{Normalization Condition:} 
+    \[ \sum_{i=1}^{n} \pi_i = 1 \]
+    \item \textbf{Probability Constraint:} 
+    \[ \pi_i \ge 0 \quad \text{for all } i \]
+\end{enumerate}
+
+\section{Existence and Uniqueness}
+\subsection{Assumptions and Conditions}
+According to the lecture slides, the stationary distribution exists and is unique if the Markov chain satisfies the following properties:
+\begin{itemize}
+    \item \textbf{Irreducibility:} It is possible to reach any state from any other state in a finite number of steps.
+    \item \textbf{Aperiodicity:} The states do not have a periodic recurrence pattern.
+    \item \textbf{Finite State Space:} The number of states is finite.
+\end{itemize}
+
+\section{The Stationary Theorem}
+If a Markov chain is irreducible and aperiodic, then:
+\begin{enumerate}
+    \item A unique stationary distribution $\pi$ exists.
+    \item For any initial state $i$, the $n$-step transition probabilities satisfy:
+    \[ \lim_{n \to \infty} P_{ij}^n = \pi_j \]
+\end{enumerate}
+
+\section{Step-by-Step Reasoning: Solving for $\pi$}
+To find the stationary distribution, we follow these explicit steps derived from the lecture logic:
+\begin{enumerate}
+    \item Write down the matrix equation $\pi = \pi P$.
+    \item Expand this into a system of $n$ linear equations.
+    \item Note that the equations in the system are linearly dependent (the rank is $n-1$).
+    \item Replace one of the redundant equations with the normalization condition $\sum \pi_i = 1$.
+    \item Solve the resulting system of linear equations using substitution or Gaussian elimination.
+\end{enumerate}
+
+\section{Worked Example: 2-State Markov Chain}
+\textbf{Problem:} Consider a 2-state Markov chain with states $\{0, 1\}$ and the following transition matrix $P$:
+\[ P = \begin{bmatrix} 1-\alpha & \alpha \\ \beta & 1-\beta \end{bmatrix} \]
+Find the stationary distribution $\pi = [\pi_0, \pi_1]$.
+
+\textbf{Step-by-Step Solution:}
+\begin{enumerate}
+    \item \textbf{Set up the system $\pi P = \pi$:}
+    \[ [\pi_0, \pi_1] \begin{bmatrix} 1-\alpha & \alpha \\ \beta & 1-\beta \end{bmatrix} = [\pi_0, \pi_1] \]
+    \item \textbf{Expand the equations:}
+    \begin{itemize}
+        \item $\pi_0(1-\alpha) + \pi_1(\beta) = \pi_0 \implies -\alpha\pi_0 + \beta\pi_1 = 0 \implies \alpha\pi_0 = \beta\pi_1$
+        \item $\pi_0(\alpha) + \pi_1(1-\beta) = \pi_1 \implies \alpha\pi_0 - \beta\pi_1 = 0$ (This is the redundant equation)
+    \end{itemize}
+    \item \textbf{Apply Normalization:} $\pi_0 + \pi_1 = 1 \implies \pi_1 = 1 - \pi_0$.
+    \item \textbf{Substitute and Solve:}
+    \[ \alpha\pi_0 = \beta(1-\pi_0) \implies \alpha\pi_0 = \beta - \beta\pi_0 \]
+    \[ \pi_0(\alpha + \beta) = \beta \implies \pi_0 = \frac{\beta}{\alpha + \beta} \]
+    \item \textbf{Find $\pi_1$:}
+    \[ \pi_1 = 1 - \frac{\beta}{\alpha + \beta} = \frac{\alpha}{\alpha + \beta} \]
+\end{enumerate}
+\textbf{Result:} The stationary distribution is $\pi = \left[ \frac{\beta}{\alpha + \beta}, \frac{\alpha}{\alpha + \beta} \right]$.
+
+\vfill
+\noindent \textbf{End of Lecture Scribe --- Prepared strictly from Lecture Slides for exam revision.}
+
+\end{document}

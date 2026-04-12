@@ -1,0 +1,333 @@
+\documentclass[11pt]{article}
+
+% ===================== PACKAGES =====================
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{xcolor} 
+
+% ===================== HEADER & FOOTER =====================
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{CSE 400: Fundamentals of Probability in Computing}
+\rhead{Lecture-23 Scribe Submission}
+\cfoot{\thepage}
+
+% ===================== CUSTOM COMMANDS =====================
+\newcommand{\solution}{
+    \vspace{0.5cm}
+    \noindent\textbf{\textcolor{blue}{Solution:}}
+    \vspace{0.2cm}
+    
+}
+
+% ===================== TITLE =====================
+\title{
+    \normalsize School of Engineering and Applied Science (SEAS), Ahmedabad University \\
+    \vspace{0.2cm}
+    \textbf{CSE 400: Fundamentals of Probability in Computing}\\
+    \Large Lecture-23 Scribe Submission
+}
+\author{} 
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+    {\large \textbf{Case Study: Amazon Black Friday Sale 2026 (Coding Session -- Tails and Bounds)}} \\[1.2em]
+\end{center}
+
+\noindent
+\textbf{Course:} CSE400 \\
+\textbf{Faculty:} Dr.\ Dhaval Patel \\
+\textbf{Date:} April 02, 2026
+
+\vspace{1em}
+
+\section{Lecture Theme / Core Focus}
+
+Lecture 23 introduces the idea of reasoning about uncertainty in computing systems through a case study based on Amazon Black Friday Sale 2026. The lecture connects a large-scale system event (high demand during a sale) with tail bounds and system reliability, indicating that the purpose is to understand how probability inequalities can help estimate or bound rare or extreme events in computing systems.
+
+The title itself clearly frames the lecture as:
+
+\begin{itemize}
+    \item Predicting the impossible
+    \item Using tail bounds
+    \item Studying system reliability
+    \item Through a case study
+    \item In a coding session focused on tails and bounds
+\end{itemize}
+
+\section{Context of the Case Study: Amazon Black Friday Sale 2026}
+
+The PPT explicitly states that the case study is built around the Amazon Black Friday Sale 2026. It notes:
+
+\begin{itemize}
+    \item The sale is expected to officially begin on Friday, November 27, 2026
+    \item Official confirmation from Amazon is typically closer to the date
+    \item The date is inferred using historical patterns and expert forecasts
+    \item The lecture references forecast sources such as:
+    \begin{itemize}
+        \item 91mobiles
+        \item Bajaj Finserv
+    \end{itemize}
+\end{itemize}
+
+\subsection*{Interpretation from the Slide Text (Within PPT Boundaries)}
+
+The lecture uses this event as a real-world example of a situation where:
+
+\begin{itemize}
+    \item Demand can spike unpredictably
+    \item System load can become extreme
+    \item Computing infrastructure must handle uncertainty
+    \item Rare high-load events matter for reliability analysis
+\end{itemize}
+
+This interpretation follows directly from the lecture title and the slide phrase \textit{``Connect with Uncertainty and Computing''}, which links the Amazon sale scenario to probabilistic system analysis.
+
+\section{Central Conceptual Bridge: ``Connect with Uncertainty and Computing''}
+
+A slide explicitly contains the phrase:
+
+\begin{quote}
+\textbf{Amazon Black Friday Sale 2026 -- Connect with Uncertainty and Computing}
+\end{quote}
+
+This is the conceptual bridge of the lecture.
+
+\subsection*{Meaning of this Bridge in the Lecture Flow}
+
+The lecture appears to move from:
+
+\begin{itemize}
+    \item A real-world high-stakes event (Amazon sale)
+    \item To the need to model uncertainty
+    \item To mathematical tools that help reason about extremes
+    \item To implications for system reliability
+\end{itemize}
+
+So the lecture is not merely about a sale event; it uses the event as a computing systems reliability scenario under uncertain demand.
+
+\section{Main Mathematical / Analytical Tools Mentioned}
+
+The extractable PPT text explicitly lists three tail-bound tools:
+
+\begin{itemize}
+    \item Markov's Inequality
+    \item Chebyshev's Inequality
+    \item Chernoff Bound
+\end{itemize}
+
+These are the only explicitly named theoretical results visible in the PDF text, so they form the core theoretical structure of the lecture.
+
+\section{Exam-Ready Reconstruction of Lecture Flow}
+
+\subsection{Motivation}
+
+The lecture begins with a high-impact, realistic computing event:
+
+\begin{itemize}
+    \item Amazon Black Friday Sale 2026
+    \item Large-scale online demand
+    \item High uncertainty in traffic / load
+    \item Need for robust systems under rare extreme events
+\end{itemize}
+
+\subsection*{Why this Matters}
+
+In system reliability, average behavior is often not enough.
+
+What matters is the chance of extreme outcomes (for example, unusually high demand or stress). This is exactly why the lecture turns to tail bounds. This reasoning is directly supported by the lecture title and the listed inequalities/bounds.
+
+\subsection{Transition to Tail Bounds}
+
+The phrase \textit{``Predicting the Impossible''} strongly suggests that the lecture focuses on estimating or bounding events that are:
+
+\begin{itemize}
+    \item Rare
+    \item Extreme
+    \item Hard to predict exactly
+    \item But still important for system design and reliability
+\end{itemize}
+
+Instead of exact probabilities from full distributions, the lecture likely emphasizes bounds on unlikely events.
+
+This is consistent with the listed tools:
+
+\begin{itemize}
+    \item Markov's Inequality $\rightarrow$ coarse upper bound
+    \item Chebyshev's Inequality $\rightarrow$ variance-aware bound
+    \item Chernoff Bound $\rightarrow$ stronger concentration bound for sums / deviations
+\end{itemize}
+
+\textbf{Note:} I am intentionally not writing formulas, because they are not visible in the extractable PPT text you provided, and you explicitly said not to add anything outside the PPT.
+
+\section{Topic-Wise Scribe}
+
+\subsection{Markov's Inequality}
+
+\subsubsection*{What is Explicitly Present in the PPT}
+The term \textit{``Markov's Inequality''} is explicitly listed.
+
+\subsubsection*{Lecture-Role Reconstruction (Strictly Bounded)}
+From its placement among the listed tail bounds, Markov's Inequality is presented as one of the first tools for bounding rare events in uncertain systems.
+
+\subsubsection*{Exam-Ready Takeaway}
+\begin{itemize}
+    \item Markov's Inequality is introduced as a tail-bound method
+    \item It is relevant when trying to reason about extreme outcomes
+    \item In the context of the Amazon sale case study, it supports the theme of system reliability under uncertainty
+\end{itemize}
+
+\subsubsection*{What Cannot Be Safely Added}
+Because the visible PDF text does not show the formula, assumptions, proof, or worked example, those cannot be included without violating your instruction.
+
+\subsection{Chebyshev's Inequality}
+
+\subsubsection*{What is Explicitly Present in the PPT}
+The term \textit{``Chebyshev's Inequality''} is explicitly listed.
+
+\subsubsection*{Lecture-Role Reconstruction (Strictly Bounded)}
+Chebyshev's Inequality appears as the next tool in the progression of tail bounds, suggesting a refinement or another way to bound deviations in uncertain settings.
+
+\subsubsection*{Exam-Ready Takeaway}
+\begin{itemize}
+    \item Chebyshev's Inequality is part of the lecture's tail-bounds toolkit
+    \item It is used in the broader discussion of uncertainty in computing
+    \item It contributes to reasoning about system reliability in the Amazon Black Friday scenario
+\end{itemize}
+
+\subsubsection*{What Cannot Be Safely Added}
+No explicit theorem statement, notation, proof, or example is visible in the extracted PDF text, so none should be inserted.
+
+\subsection{Chernoff Bound}
+
+\subsubsection*{What is Explicitly Present in the PPT}
+The term \textit{``Chernoff Bound''} is explicitly listed.
+
+\subsubsection*{Lecture-Role Reconstruction (Strictly Bounded)}
+Chernoff Bound is included as the third named analytical tool, implying the lecture likely builds toward a stronger or more refined concentration-style bound for system reliability analysis.
+
+\subsubsection*{Exam-Ready Takeaway}
+\begin{itemize}
+    \item Chernoff Bound is a major tail bound highlighted in this lecture
+    \item It is part of the mathematical reasoning used to understand extreme system events
+    \item It is explicitly tied to the lecture's theme of \textit{``Predicting the Impossible''} in the context of Amazon Black Friday Sale 2026
+\end{itemize}
+
+\subsubsection*{What Cannot Be Safely Added}
+Since the extractable text does not reveal formulas, conditions, or derivation steps, they must not be added.
+
+\section{Logical Structure of the Lecture (Clear Flow)}
+
+Based strictly on the visible slide text, the lecture's flow can be reconstructed as:
+
+\begin{enumerate}
+    \item \textbf{Introduce a real-world uncertain event}
+    \begin{itemize}
+        \item Amazon Black Friday Sale 2026
+        \item Expected sale date: Friday, November 27, 2026
+    \end{itemize}
+
+    \item \textbf{Connect event to computing}
+    \begin{itemize}
+        \item ``Connect with Uncertainty and Computing''
+    \end{itemize}
+
+    \item \textbf{Motivate system reliability}
+    \begin{itemize}
+        \item High demand / uncertain behavior implies reliability concerns
+        \item Extreme events matter more than average events
+        \item Hence need for probabilistic tail reasoning
+    \end{itemize}
+    (This is supported by the lecture title and slide wording.)
+
+    \item \textbf{Introduce tail-bound tools}
+    \begin{itemize}
+        \item Markov's Inequality
+        \item Chebyshev's Inequality
+        \item Chernoff Bound
+    \end{itemize}
+
+    \item \textbf{Conduct coding / class participation session}
+\end{enumerate}
+
+The lecture is explicitly labeled:
+
+\begin{itemize}
+    \item \textbf{Coding Session -- Tails and Bounds}
+    \item \textbf{L23 : Class Participation} (appears twice in the extract)
+\end{itemize}
+
+This strongly indicates that the class likely included:
+
+\begin{itemize}
+    \item Interactive reasoning
+    \item Participation-based problem exploration
+    \item Possibly implementation or computational illustration of tail bounds
+\end{itemize}
+
+However: since no code or examples are visible in the extractable text, no code content should be fabricated.
+
+\section{Definitions / Notation / Assumptions / Theorems / Proofs / Examples (Strict Compliance Section)}
+
+Since you specifically asked for these if available in the PPT, here is the exact compliance summary:
+
+\subsection{Definitions and Notation}
+Not explicitly visible in the extractable PDF text. \\
+\textbf{Therefore:} cannot be included safely.
+
+\subsection{Assumptions and Conditions}
+Not explicitly visible in the extractable PDF text. \\
+\textbf{Therefore:} cannot be included safely.
+
+\subsection{Statements of Theorems / Results}
+Only the names of the results are visible:
+
+\begin{itemize}
+    \item Markov's Inequality
+    \item Chebyshev's Inequality
+    \item Chernoff Bound
+\end{itemize}
+
+Full theorem statements are not visible in the extractable text.
+
+\subsection{Proofs / Proof Sketches}
+Not visible in the extractable PDF text. \\
+\textbf{Therefore:} cannot be included.
+
+\subsection{Worked Examples with Intermediate Steps}
+Not visible in the extractable PDF text. \\
+\textbf{Therefore:} cannot be included.
+
+\section{Class Participation / Coding Session Note}
+
+The lecture explicitly includes:
+
+\begin{itemize}
+    \item \textbf{(Coding Session -- Tails and Bounds)}
+    \item \textbf{L23 : Class Participation}
+\end{itemize}
+
+\subsection*{Exam-Ready Interpretation}
+
+This indicates the lecture was not purely theoretical. It likely involved:
+
+\begin{itemize}
+    \item Active student engagement
+    \item Some form of coding-based illustration
+    \item Hands-on application of tail-bound ideas
+\end{itemize}
+
+But because the uploaded PDF's extractable content does not show the actual code or tasks, the scribe should only state that a coding session and class participation component were part of the lecture, without inventing details.
+
+\section{Final Exam-Ready Summary (Short Version)}
+
+\subsection*{Lecture 23 Summary}
+
+Lecture 23, titled \textit{``Predicting the Impossible: Tail Bounds and System Reliability -- Case Study: Amazon Black Friday Sale 2026''}, uses the upcoming Amazon Black Friday Sale 2026 as a real-world case study to connect uncertainty in computing systems with system reliability. The lecture frames the sale as an example of a large-scale uncertain event where extreme demand can affect system behavior. To reason about such rare or extreme outcomes, the lecture highlights three key probabilistic tools: Markov's Inequality, Chebyshev's Inequality, and Chernoff Bound. The session is explicitly marked as a coding session on tails and bounds and also includes class participation, indicating an interactive or applied treatment of these concepts. Since the extractable PPT text does not reveal formulas, proofs, or worked examples, the exam-ready reconstruction should remain limited to the lecture's visible conceptual structure and named results.
+
+\end{document}
