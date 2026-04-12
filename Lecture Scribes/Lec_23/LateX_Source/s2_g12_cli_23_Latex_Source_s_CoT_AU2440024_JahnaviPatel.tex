@@ -1,0 +1,207 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{booktabs}
+
+\title{\textbf{LECTURE 23 SCRIBE}\\
+Predicting the Impossible: Tail Bounds and System Reliability}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Case Study: Amazon Black Friday Sale 2026}
+
+\section*{Slide 1: Lecture Title}
+\textbf{Instructor:}
+\begin{itemize}
+    \item Dhaval Patel, PhD
+    \item Associate Professor, CSE
+    \item MICxN Research Lab
+    \item SEAS, Ahmedabad University
+\end{itemize}
+
+\section*{Slide 2: Amazon Black Friday Sale 2026}
+\textbf{Details:}
+\begin{itemize}
+    \item Expected Start Date: 27 November 2026 (Friday)
+    \item Based on historical patterns and forecasts
+\end{itemize}
+
+\textbf{Observation:}
+\begin{itemize}
+    \item Large-scale uncertainty
+    \item Heavy traffic and unpredictable user behavior
+\end{itemize}
+
+\section*{Slide 3: Uncertainty in Computing Systems}
+\begin{itemize}
+    \item Real-world systems operate under uncertainty
+    \item User requests and traffic are random
+\end{itemize}
+
+\textbf{Challenge:} Exact prediction is not possible.
+
+\section*{Slide 4: Motivation}
+\begin{itemize}
+    \item Handle unpredictable system behavior
+    \item Estimate extreme conditions like overload
+\end{itemize}
+
+\textbf{Approach:} Use probabilistic bounds.
+
+\section*{Slide 5: Tail Bounds}
+\textbf{Definition:} Tail bounds give an upper bound on probability that a random variable deviates significantly from its expected value.
+
+\textbf{Purpose:}
+\begin{itemize}
+    \item Quantify risk of extreme events
+    \item Assist in system reliability
+\end{itemize}
+
+\section*{Slide 6: Types of Tail Bounds}
+\begin{enumerate}
+    \item Markov’s Inequality
+    \item Chebyshev’s Inequality
+    \item Chernoff Bound
+\end{enumerate}
+
+\section*{Slide 7: Markov’s Inequality}
+\[
+P(X \geq a) \leq \frac{E[X]}{a}
+\]
+
+\textbf{Assumptions:}
+\begin{itemize}
+    \item $X \geq 0$
+    \item $E[X]$ exists
+\end{itemize}
+
+\section*{Slide 8: Derivation of Markov’s Inequality}
+\[
+E[X] = \int_0^\infty P(X \geq t)\, dt
+\]
+
+For $t \leq a$:
+\[
+P(X \geq t) \geq P(X \geq a)
+\]
+
+\[
+E[X] \geq \int_0^a P(X \geq a)\, dt = a \cdot P(X \geq a)
+\]
+
+\[
+\Rightarrow P(X \geq a) \leq \frac{E[X]}{a}
+\]
+
+\section*{Slide 9: Interpretation of Markov’s Inequality}
+\begin{itemize}
+    \item Requires only mean
+    \item Provides loose bound
+    \item Useful with limited information
+\end{itemize}
+
+\section*{Slide 10: Chebyshev’s Inequality}
+\[
+P(|X - \mu| \geq k\sigma) \leq \frac{1}{k^2}
+\]
+
+\textbf{Assumptions:}
+\begin{itemize}
+    \item Mean $\mu$ exists
+    \item Variance $\sigma^2$ exists
+\end{itemize}
+
+\section*{Slide 11: Derivation of Chebyshev’s Inequality}
+Apply Markov to $(X - \mu)^2$:
+
+\[
+P((X - \mu)^2 \geq k^2\sigma^2) \leq \frac{E[(X - \mu)^2]}{k^2\sigma^2}
+\]
+
+Since:
+\[
+E[(X - \mu)^2] = \sigma^2
+\]
+
+\[
+\Rightarrow P(|X - \mu| \geq k\sigma) \leq \frac{1}{k^2}
+\]
+
+\section*{Slide 12: Interpretation of Chebyshev’s Inequality}
+\begin{itemize}
+    \item Works for any distribution
+    \item Uses variance
+    \item Tighter than Markov
+\end{itemize}
+
+\section*{Slide 13: Chernoff Bound}
+\[
+P(X \geq (1+\delta)\mu) \leq e^{-\frac{\mu \delta^2}{3}}, \quad (0 < \delta < 1)
+\]
+
+\textbf{Assumptions:}
+\begin{itemize}
+    \item Independent random variables
+    \item Often Bernoulli trials
+\end{itemize}
+
+\section*{Slide 14: Properties of Chernoff Bound}
+\begin{itemize}
+    \item Exponentially decreasing bounds
+    \item Much tighter
+    \item Suitable for large-scale systems
+\end{itemize}
+
+\section*{Slide 15: Application to Amazon Case Study}
+\textbf{Model:}
+\begin{itemize}
+    \item $X$ = system load (number of users)
+\end{itemize}
+
+\textbf{Objective:}
+\begin{itemize}
+    \item Estimate probability of overload and failure
+\end{itemize}
+
+\textbf{Method:} Apply tail bounds.
+
+\section*{Slide 16: System Reliability}
+\textbf{Definition:} Probability that a system performs correctly under specified conditions.
+
+\textbf{Use:}
+\begin{itemize}
+    \item Estimate failure probability
+    \item Design safety margins
+\end{itemize}
+
+\section*{Slide 17: Key Observations}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Method & Requirement & Nature \\
+\midrule
+Markov & Mean only & Loose \\
+Chebyshev & Mean + Variance & Moderate \\
+Chernoff & Independence & Tight \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{itemize}
+    \item Exact prediction not feasible
+    \item Tail bounds provide upper guarantees
+\end{itemize}
+
+\section*{Slide 18: Class Participation}
+\begin{itemize}
+    \item Discussion on tail bounds application
+    \item System reliability
+    \item Interpretation of probabilistic guarantees
+\end{itemize}
+
+\end{document}
